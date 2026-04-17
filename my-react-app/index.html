@@ -5,6 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Centre for Sustainable Energy | IIT Madras × Coal India Limited</title>
+<link rel="preload" as="image" href="/src/assets/mines.png" fetchpriority="high">
+<link rel="preload" as="image" href="/src/assets/coalresource.png" fetchpriority="high">
+<link rel="preload" as="image" href="/src/assets/coal.png" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -104,6 +107,11 @@
   .opp-card-1 { background-image: url('src/assets/mines.png'); }
   .opp-card-2 { background-image: url('src/assets/coalresource.png'); }
   .opp-card-3 { background-image: url('src/assets/coal.png'); }
+  /* Show all three opportunity cards without stagger delay */
+  .opp-card.reveal,
+  .opp-card.reveal-d1,
+  .opp-card.reveal-d2,
+  .opp-card.reveal-d3 { transition-delay: 0s !important; }
   .opp-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 400; color: rgba(74,144,217,0.2); line-height: 1; margin-bottom: 20px; }
   .opp-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 400; color: var(--white); margin-bottom: 12px; }
   .opp-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
@@ -336,23 +344,58 @@
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
+    nav { padding: 0 28px; height: 88px; }
+    .nav-brand-logo { width: 180px; height: 180px; }
+    .nav-links { gap: 24px; }
+    .leader-links { margin-left: 0; }
     .leaders-row { grid-template-columns: repeat(2,1fr); }
+    .leader-top { align-items: center; }
+    .leader-front { gap: 12px; }
+    .leader-back-content { gap: 10px; }
   }
   @media (max-width: 900px) {
-    nav { padding: 0 24px; }
+    nav { padding: 0 18px; height: 78px; }
+    .nav-brand-logo { width: 136px; height: 136px; }
     .nav-links { display: none; }
-    section { padding: 64px 24px; }
-    #hero { padding: 100px 24px 80px; }
+    section { padding: 60px 18px; }
+    #hero { padding: 98px 18px 64px; min-height: auto; }
+    .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.12em; margin-bottom: 20px; }
+    .hero-desc { font-size: 0.96rem; line-height: 1.7; }
+    .hero-scroll { display: none; }
+    .hero-cta { margin-top: 28px; }
+    .btn-primary, .btn-ghost { padding: 11px 18px; font-size: 0.76rem; }
     .vision-layout, .leaders-row { grid-template-columns: 1fr; gap: 20px; }
     .opp-grid, .themes-grid, .approach-grid { grid-template-columns: 1fr; }
     .faculty-grid { grid-template-columns: repeat(2,1fr); }
     .simple-people-grid { grid-template-columns: repeat(2,1fr); }
-    .divider { margin: 0 24px; }
-    footer { padding: 28px 24px; flex-direction: column; gap: 12px; }
-    #contact { padding: 80px 24px; }
+    .leader-front, .faculty-front { gap: 10px; }
+    .leader-photo, .faculty-photo, .simple-person-photo { width: 82px; height: 82px; }
+    .leader-back-content, .faculty-back-content, .simple-person-back-content { gap: 7px; }
+    .divider { margin: 0 18px; }
+    footer { padding: 24px 18px; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; }
+    .footer-badges { justify-content: center; flex-wrap: wrap; row-gap: 8px; column-gap: 12px; }
+    .footer-badge { font-size: 0.58rem; letter-spacing: 0.09em; }
+    #contact { padding: 72px 18px; }
   }
   @media (max-width: 640px) {
+    nav { height: 76px; padding: 0 12px; }
+    .nav-brand-logo { width: 124px; height: 124px; }
+    section { padding: 48px 12px; }
+    #hero { padding: 84px 12px 52px; }
+    h1 { font-size: clamp(2.2rem, 11vw, 3.2rem); margin-bottom: 18px; }
+    h2 { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+    .opp-card, .theme-card, .approach-step { padding: 26px 18px; }
+    .leaders-row { gap: 14px; }
+    .leader-top, .faculty-front, .simple-person-top { gap: 8px; }
+    .leader-photo, .faculty-photo, .simple-person-photo { width: 68px; height: 68px; }
+    .leader-name { font-size: 0.88rem; }
+    .leader-title, .leader-sub, .faculty-card .fc-area, .simple-person-role { font-size: 0.72rem; }
+    .faculty-grid { grid-template-columns: 1fr; }
     .simple-people-grid { grid-template-columns: 1fr; }
+    .contact-meta { gap: 20px; margin-top: 36px; padding-top: 26px; }
+    .footer-badges { gap: 8px; }
+    .footer-sep { display: none; }
+    .divider { margin: 0 12px; }
   }
 </style>
 </head>
