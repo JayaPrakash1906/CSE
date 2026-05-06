@@ -1,1219 +1,2756 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centre for Sustainable Energy | IIT Madras × Coal India Limited</title>
-<link rel="preload" as="image" href="/src/assets/mines.png" fetchpriority="high">
-<link rel="preload" as="image" href="/src/assets/coalresource.png" fetchpriority="high">
-<link rel="preload" as="image" href="/src/assets/coal.png" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-  :root {
-    --navy:        #0A5055; /* Dark Teal */
-    --navy-mid:    #083D40;
-    --blue:        #0E6A6E; /* Teal */
-    --blue-light:  #147E82; /* Teal highlight */
-    --sky:         #A0D002; /* Accent Green */
-    --sky-pale:    #D8F28A; /* Light Accent */
-    --white:       #ffffff;
-    --off-white:   #f4f7fb;
-    --gray-light:  #E6ECEC;
-    --gray-mid:    #B7C2C2;
-    --gray:        #6E7E7E;
-    --gray-dark:   #475858;
-    --text-body:   #292929; /* Dark Gray */
-    --text-muted:  #424242;
-    --accent:      #A0D002;
-    --accent-glow: rgba(160,208,2,0.12);
-    --border:      rgba(10,80,85,0.18);
-    --border-sub:  rgba(10,80,85,0.08);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--white); color: var(--text-body); font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centre for Sustainable Energy | IIT Madras × Coal India Limited</title>
+  <link rel="preload" as="image" href="/src/assets/mines.png" fetchpriority="high">
+  <link rel="preload" as="image" href="/src/assets/coalresource.png" fetchpriority="high">
+  <link rel="preload" as="image" href="/src/assets/coal.png" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --navy: #0A5055;
+      /* Dark Teal */
+      --navy-mid: #083D40;
+      --blue: #0E6A6E;
+      /* Teal */
+      --blue-light: #147E82;
+      /* Teal highlight */
+      --sky: #A0D002;
+      /* Accent Green */
+      --sky-pale: #D8F28A;
+      /* Light Accent */
+      --white: #ffffff;
+      --off-white: #f4f7fb;
+      --gray-light: #E6ECEC;
+      --gray-mid: #B7C2C2;
+      --gray: #6E7E7E;
+      --gray-dark: #475858;
+      --text-body: #292929;
+      /* Dark Gray */
+      --text-muted: #424242;
+      --accent: #A0D002;
+      --accent-glow: rgba(160, 208, 2, 0.12);
+      --border: rgba(10, 80, 85, 0.18);
+      --border-sub: rgba(10, 80, 85, 0.08);
+    }
 
-  /* PROGRESS */
-  .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--blue-light), var(--sky)); width: 0%; z-index: 200; transition: width 0.1s; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 60px; height: 104px; background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-sub); box-shadow: 0 1px 24px rgba(13,31,60,0.06); }
-  .nav-brand { display: flex; flex-direction: row; align-items: center; gap: 18px; text-decoration: none; }
-  .nav-brand-logo { width: 320px; height: 320px; object-fit: contain; }
-  .nav-brand-text { display: flex; flex-direction: column; gap: 1px; }
-  .nav-brand-main { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--navy); line-height: 1.2; }
-  .nav-brand-sub { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); }
-  .nav-links { display: flex; gap: 40px; list-style: none; }
-  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 400; letter-spacing: 0.04em; transition: color 0.25s; }
-  .nav-links a:hover { color: var(--blue-light); }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* HERO */
-  #hero { min-height: 100vh; background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 50%, var(--blue) 100%); position: relative; overflow: hidden; display: flex; align-items: center; padding: 100px 52px 80px; }
-  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.80; z-index: 0; }
-  .hero-video-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(13,31,60,0.78) 0%, rgba(22,45,82,0.7) 50%, rgba(30,71,133,0.6) 100%); z-index: 1; }
-  .hero-shapes { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
-  .hero-shapes::before { content: ''; position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(74,144,217,0.18) 0%, transparent 70%); right: -120px; top: -120px; }
-  .hero-shapes::after { content: ''; position: absolute; width: 400px; height: 400px; border: 1px solid rgba(255,255,255,0.07); border-radius: 50%; right: 10%; bottom: 10%; }
-  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 64px 64px; z-index: 1; }
-  .hero-inner { position: relative; z-index: 2; max-width: 780px; }
-  .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 6px 16px; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sky-pale); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
-  .eyebrow-dot { width: 6px; height: 6px; background: var(--sky); border-radius: 50%; }
-  h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6.5vw, 6rem); font-weight: 400; line-height: 1.08; color: var(--white); letter-spacing: -0.015em; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.9s ease 0.35s forwards; }
-  h1 em { font-style: italic; color: var(--sky-pale); }
-  .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 580px; opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards; }
-  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 44px; opacity: 0; animation: fadeUp 0.9s ease 0.65s forwards; }
-  .btn-primary { background: var(--white); color: var(--navy); padding: 13px 32px; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: background 0.25s, transform 0.2s, box-shadow 0.25s; box-shadow: 0 2px 16px rgba(0,0,0,0.18); }
-  .btn-primary:hover { background: var(--sky-pale); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.22); }
-  .btn-ghost { background: transparent; color: var(--white); padding: 13px 32px; border: 1px solid rgba(255,255,255,0.3); font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.05em; text-decoration: none; transition: border-color 0.25s, background 0.25s, transform 0.2s; }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); transform: translateY(-2px); }
-  .hero-scroll { position: absolute; bottom: 40px; left: 52px; display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); opacity: 0; animation: fadeUp 0.9s ease 1s forwards; }
-  .scroll-line { width: 36px; height: 1px; background: rgba(255,255,255,0.25); }
+    body {
+      background: var(--white);
+      color: var(--text-body);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-  /* SECTIONS */
-  section { padding: 96px 52px; }
-  .section-eyebrow { display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 18px; }
-  .section-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--blue-light); }
-  h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 400; line-height: 1.15; color: var(--navy); letter-spacing: -0.01em; }
-  h2 em { font-style: italic; color: var(--blue-light); }
-  .divider { height: 1px; background: var(--gray-light); margin: 0 52px; }
+    /* PROGRESS */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-light), var(--sky));
+      width: 0%;
+      z-index: 200;
+      transition: width 0.1s;
+    }
 
-  /* VISION */
-  #vision { background: var(--white); }
-  .vision-layout { display: grid; grid-template-columns: 5fr 4fr; gap: 80px; margin-top: 56px; align-items: start; }
-  .vision-intro p { font-size: 1rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 20px; }
-  .vision-intro p strong { color: var(--text-body); font-weight: 500; }
-  .vision-pillars { display: flex; flex-direction: column; gap: 16px; }
-  .pillar { padding: 24px 28px; border-left: 3px solid var(--gray-light); background: var(--off-white); transition: border-color 0.3s, background 0.3s; }
-  .pillar:hover { border-color: var(--blue-light); background: var(--accent-glow); }
-  .pillar-num { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 7px; }
-  .pillar h4 { font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-  .pillar p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 104px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-sub);
+      box-shadow: 0 1px 24px rgba(13, 31, 60, 0.06);
+    }
 
-  /* OPPORTUNITY */
-  #opportunity { background: var(--navy); }
-  #opportunity .section-eyebrow { color: var(--sky-pale); }
-  #opportunity .section-eyebrow::before { background: var(--sky-pale); }
-  #opportunity h2 { color: var(--white); }
-  #opportunity h2 em { color: var(--sky-pale); }
-  .opp-intro { max-width: 640px; margin-top: 20px; margin-bottom: 56px; color: rgba(255,255,255,0.55); font-size: 1rem; line-height: 1.8; }
-  .opp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.06); }
-  .opp-card { background: var(--navy); padding: 44px 36px; transition: background 0.3s; border-top: 2px solid transparent; position: relative; overflow: hidden; background-size: cover; background-position: center; }
-  .opp-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,31,60,0.35) 0%, rgba(13,31,60,0.88) 65%); }
-  .opp-card > * { position: relative; z-index: 1; }
-  .opp-card:hover { background-color: var(--navy-mid); border-top-color: var(--sky); }
-  .opp-card-1 { background-image: url('src/assets/mines.png'); }
-  .opp-card-2 { background-image: url('src/assets/coalresource.png'); }
-  .opp-card-3 { background-image: url('src/assets/coal.png'); }
-  /* Show all three opportunity cards without stagger delay */
-  .opp-card.reveal,
-  .opp-card.reveal-d1,
-  .opp-card.reveal-d2,
-  .opp-card.reveal-d3 { transition-delay: 0s !important; }
-  .opp-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 400; color: rgba(74,144,217,0.2); line-height: 1; margin-bottom: 20px; }
-  .opp-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 400; color: var(--white); margin-bottom: 12px; }
-  .opp-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
-  .opp-tag { display: inline-block; margin-top: 20px; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sky); border-bottom: 1px solid rgba(74,144,217,0.3); padding-bottom: 2px; }
+    .nav-brand {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 18px;
+      text-decoration: none;
+    }
 
-  /* RESEARCH */
-  #research { background: var(--off-white); }
-  .themes-intro { max-width: 600px; margin-top: 16px; margin-bottom: 56px; color: var(--text-muted); font-size: 1rem; line-height: 1.8; }
-  .themes-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
-  .theme-card { background: var(--white); border: 1px solid var(--border-sub); padding: 44px 40px; position: relative; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
-  .theme-card:hover { border-color: var(--border); box-shadow: 0 8px 40px rgba(13,31,60,0.08); transform: translateY(-4px); }
-  .theme-bg-letter { position: absolute; top: -16px; right: 20px; font-family: 'Playfair Display', serif; font-size: 8rem; font-weight: 600; color: var(--navy); opacity: 0.04; line-height: 1; pointer-events: none; }
-  .theme-icon { width: 44px; height: 44px; background: var(--accent-glow); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 20px; color: var(--blue-light); }
-  .theme-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--navy); margin-bottom: 14px; line-height: 1.3; }
-  .theme-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
-  .theme-outcomes { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--gray-light); }
-  .theme-outcomes-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
-  .outcomes-list { display: flex; flex-wrap: wrap; gap: 8px; }
-  .outcome-tag { padding: 4px 12px; background: var(--off-white); border: 1px solid var(--gray-light); font-size: 0.75rem; color: var(--gray-dark); }
+    .nav-brand-logo {
+      width: 320px;
+      height: 320px;
+      object-fit: contain;
+    }
 
-  /* APPROACH */
-  #approach { background: var(--white); }
-  .approach-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 56px; background: var(--gray-light); }
-  .approach-step { background: var(--white); padding: 40px 32px; transition: background 0.3s; }
-  .approach-step:hover { background: var(--off-white); }
-  .step-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 16px; }
-  .approach-step h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; color: var(--navy); margin-bottom: 12px; }
-  .approach-step p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.7; }
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
 
-  /* TEAM */
-  #team { background: var(--off-white); }
-  .team-intro { max-width: 580px; margin-top: 16px; margin-bottom: 56px; color: var(--text-muted); font-size: 1rem; line-height: 1.8; }
+    .nav-brand-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+    }
 
-  /* Leadership cards — 3-column */
-  .leaders-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 40px; }
-  .leader-card { perspective: 1000px; min-height: 158px; }
-  .leader-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 158px;
-    transform-style: preserve-3d;
-    transition: transform 0.45s ease;
-  }
-  .leader-card:hover .leader-inner { transform: rotateY(180deg); }
-  .leader-front,
-  .leader-back {
-    position: absolute;
-    inset: 0;
-    background: var(--white);
-    border: 1px solid transparent;
-    padding: 12px 12px 10px;
-    backface-visibility: hidden;
-  }
-  .leader-front { display: flex; flex-direction: column; gap: 8px; }
-  .leader-back {
-    transform: rotateY(180deg);
-    background: var(--off-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    border-color: var(--border-sub);
-  }
-  .leader-card:hover .leader-front { border-color: var(--border-sub); }
-  .leader-top { display: flex; gap: 14px; align-items: flex-start; }
-  .leader-photo { width: 100px; height: 100px; flex-shrink: 0; border-radius: 8px; object-fit: cover; object-position: top; border: 1px solid var(--border-sub); background: var(--off-white); }
-  /* .leader-info intentionally left blank */
-  .leader-name { font-size: 0.97rem; font-weight: 600; color: var(--navy); margin-bottom: 3px; line-height: 1.3; }
-  .leader-title { font-size: 0.75rem; color: var(--blue-light); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; margin-bottom: 4px; }
-  .leader-sub { font-size: 0.79rem; color: var(--text-muted); display: block; margin-top: 2px; }
-  /* Align leadership links under the text column (not under the photo). */
-  .leader-links { display: flex; gap: 8px; flex-wrap: wrap; margin-left: calc(100px + 14px); }
-  .leader-bio { font-size: 0.79rem; color: var(--text-muted); line-height: 1.65; }
-  .leader-back-content { width: 100%; display: flex; flex-direction: column; gap: 8px; text-align: left; max-height: 100%; overflow-y: auto; }
-  .leader-back-role { font-size: 0.74rem; color: var(--blue-light); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
-  .leader-back-links { display: flex; gap: 10px; flex-wrap: wrap; }
-  .leader-expertise-title { font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); font-family: 'DM Mono', monospace; }
-  .leader-expertise-list { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
-  .leader-expertise-list li { margin: 0; padding: 3px 8px; border: 1px solid var(--border-sub); background: var(--white); font-size: 0.7rem; line-height: 1.35; color: var(--text-muted); border-radius: 999px; }
-  .profile-link { display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-light); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
-  .profile-link:hover { color: var(--sky); border-color: var(--sky); }
-  .profile-link svg { width: 10px; height: 10px; flex-shrink: 0; }
+    .nav-brand-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
 
-  /* Faculty grid */
-  .faculty-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
-  .faculty-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--gray-light); }
-  .faculty-card { perspective: 1000px; min-height: 158px; }
-  .faculty-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 158px;
-    transform-style: preserve-3d;
-    transition: transform 0.45s ease;
-  }
-  .faculty-card:hover .faculty-inner { transform: rotateY(180deg); }
-  /* Disable flip for specific faculty cards with missing/unknown details */
-  .faculty-card.no-flip:hover .faculty-inner { transform: none !important; }
-  .faculty-front,
-  .faculty-back {
-    position: absolute;
-    inset: 0;
-    background: var(--white);
-    padding: 12px 12px 10px;
-    backface-visibility: hidden;
-    border: 1px solid transparent;
-  }
-  .faculty-front { display: flex; gap: 14px; align-items: flex-start; }
-  .faculty-back {
-    transform: rotateY(180deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    background: var(--off-white);
-    border-color: var(--border-sub);
-  }
-  .faculty-card:hover .faculty-front { border-color: var(--border-sub); }
-  .faculty-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-    object-fit: cover;
-    object-position: top;
-    border: 1px solid var(--border-sub);
-    background: var(--off-white);
-    flex-shrink: 0;
-  }
-  .faculty-card h5 {
-    margin: 0;
-    font-size: 0.87rem;
-    font-weight: 500;
-    color: var(--navy);
-    line-height: 1.3;
-  }
-  .faculty-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
-  .faculty-card .fc-area { font-size: 0.74rem; color: var(--text-muted); margin-bottom: 0; }
-  .faculty-card .profile-link { margin-top: 2px; white-space: nowrap; }
-  .faculty-back-content { display: flex; flex-direction: column; gap: 8px; width: 100%; }
-  .faculty-back .fc-area.fc-expertise { color: var(--blue-light); font-weight: 500; }
-  .faculty-back-links { display: flex; gap: 8px; flex-wrap: wrap; }
-  .faculty-bio {
-    font-size: 0.72rem;
-    line-height: 1.5;
-    color: var(--text-muted);
-    margin: 0;
-  }
-  .bio-toggle {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--blue-light);
-    text-decoration: none;
-    border-bottom: 1px solid var(--border);
-    margin-left: 6px;
-  }
-  .bio-toggle:hover { color: var(--sky); border-color: var(--sky); }
-  .bio-card {
-    display: none;
-    margin-top: 18px;
-    background: var(--white);
-    border: 1px solid var(--border-sub);
-    padding: 18px 20px;
-  }
-  .bio-card.is-open { display: block; }
-  .bio-card h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-  .bio-card p {
-    font-size: 0.82rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-    margin: 0;
-  }
-  .team-subsection { margin-top: 28px; }
-  .team-subsection .faculty-label { margin-bottom: 12px; }
-  .simple-people-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--gray-light); }
-  .simple-person-card { perspective: 1000px; min-height: 132px; }
-  .simple-person-inner { position: relative; width: 100%; height: 100%; min-height: 132px; transform-style: preserve-3d; transition: transform 0.45s ease; }
-  .simple-person-card:hover .simple-person-inner { transform: rotateY(180deg); }
-  .simple-person-front, .simple-person-back { position: absolute; inset: 0; background: var(--white); padding: 18px 16px; border: 1px solid transparent; backface-visibility: hidden; }
-  .simple-person-front { display: flex; align-items: center; }
-  .simple-person-back { transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; text-align: center; background: var(--off-white); border-color: var(--border-sub); }
-  .simple-person-card:hover .simple-person-front { border-color: var(--border-sub); box-shadow: 0 4px 18px rgba(13,31,60,0.06); }
-  .simple-person-card.no-flip .simple-person-inner { transform: none !important; }
-  .simple-person-card.no-flip:hover .simple-person-inner { transform: none; }
-  .simple-person-card.no-flip .simple-person-back { display: none; }
-  .simple-person-top { display: flex; gap: 12px; align-items: center; }
-  .simple-person-photo { width: 100px; height: 100px; flex-shrink: 0; border-radius: 8px; object-fit: cover; object-position: top; border: 1px solid var(--border-sub); background: var(--off-white); }
-  .simple-person-name { font-size: 0.9rem; font-weight: 500; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
-  .simple-person-role { font-size: 0.76rem; color: var(--text-muted); line-height: 1.5; }
-  .simple-person-back-text { font-size: 0.76rem; color: var(--text-muted); line-height: 1.55; }
-  .simple-person-back-content { width: 100%; display: flex; flex-direction: column; gap: 8px; text-align: left; }
-  .simple-person-back-links { display: flex; gap: 10px; flex-wrap: wrap; }
-  .simple-person-expertise { font-size: 0.74rem; line-height: 1.55; color: var(--text-muted); }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
 
-  /* CONTACT */
-  #contact { background: linear-gradient(150deg, var(--blue) 0%, var(--navy-mid) 100%); padding: 110px 52px; text-align: center; position: relative; overflow: hidden; }
-  #contact::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 64px 64px; }
-  #contact .section-eyebrow { justify-content: center; color: var(--sky-pale); }
-  #contact .section-eyebrow::before { display: none; }
-  #contact h2 { color: var(--white); max-width: 600px; margin: 0 auto 20px; }
-  #contact h2 em { color: var(--sky-pale); }
-  .contact-body { max-width: 500px; margin: 0 auto 44px; color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.8; }
-  .contact-cta { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; }
-  .contact-meta { position: relative; display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
-  .meta-value { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      transition: color 0.25s;
+    }
 
-  /* FOOTER */
-  footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.07); padding: 32px 52px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-  footer p { font-size: 0.76rem; color: rgba(255,255,255,0.3); }
-  .footer-badges { display: flex; gap: 20px; align-items: center; }
-  .footer-badge { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
-  .footer-sep { color: rgba(255,255,255,0.12); }
+    .nav-links a:hover {
+      color: var(--blue-light);
+    }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-d1 { transition-delay: 0.1s; }
-  .reveal-d2 { transition-delay: 0.2s; }
-  .reveal-d3 { transition-delay: 0.3s; }
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 50%, var(--blue) 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 100px 52px 80px;
+    }
 
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    nav { padding: 0 28px; height: 88px; }
-    .nav-brand-logo { width: 180px; height: 180px; }
-    .nav-links { gap: 24px; }
-    .leader-links { margin-left: 0; }
-    .leaders-row { grid-template-columns: repeat(2,1fr); }
-    .leader-top { align-items: center; }
-    .leader-front { gap: 12px; }
-    .leader-back-content { gap: 10px; }
-  }
-  @media (max-width: 900px) {
-    nav { padding: 0 18px; height: 78px; }
-    .nav-brand-logo { width: 136px; height: 136px; }
-    .nav-links { display: none; }
-    section { padding: 60px 18px; }
-    #hero { padding: 98px 18px 64px; min-height: auto; }
-    .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.12em; margin-bottom: 20px; }
-    .hero-desc { font-size: 0.96rem; line-height: 1.7; }
-    .hero-scroll { display: none; }
-    .hero-cta { margin-top: 28px; }
-    .btn-primary, .btn-ghost { padding: 11px 18px; font-size: 0.76rem; }
-    .vision-layout, .leaders-row { grid-template-columns: 1fr; gap: 20px; }
-    .opp-grid, .themes-grid, .approach-grid { grid-template-columns: 1fr; }
-    .faculty-grid { grid-template-columns: repeat(2,1fr); }
-    .simple-people-grid { grid-template-columns: repeat(2,1fr); }
-    .leader-front, .faculty-front { gap: 10px; }
-    .leader-photo, .faculty-photo, .simple-person-photo { width: 82px; height: 82px; }
-    .leader-back-content, .faculty-back-content, .simple-person-back-content { gap: 7px; }
-    .divider { margin: 0 18px; }
-    footer { padding: 24px 18px; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; }
-    .footer-badges { justify-content: center; flex-wrap: wrap; row-gap: 8px; column-gap: 12px; }
-    .footer-badge { font-size: 0.58rem; letter-spacing: 0.09em; }
-    #contact { padding: 72px 18px; }
-  }
-  @media (max-width: 640px) {
-    nav { height: 76px; padding: 0 12px; }
-    .nav-brand-logo { width: 124px; height: 124px; }
-    section { padding: 48px 12px; }
-    #hero { padding: 84px 12px 52px; }
-    h1 { font-size: clamp(2.2rem, 11vw, 3.2rem); margin-bottom: 18px; }
-    h2 { font-size: clamp(1.6rem, 8vw, 2.2rem); }
-    .opp-card, .theme-card, .approach-step { padding: 26px 18px; }
-    .leaders-row { gap: 14px; }
-    .leader-top, .faculty-front, .simple-person-top { gap: 8px; }
-    .leader-photo, .faculty-photo, .simple-person-photo { width: 68px; height: 68px; }
-    .leader-name { font-size: 0.88rem; }
-    .leader-title, .leader-sub, .faculty-card .fc-area, .simple-person-role { font-size: 0.72rem; }
-    .faculty-grid { grid-template-columns: 1fr; }
-    .simple-people-grid { grid-template-columns: 1fr; }
-    .contact-meta { gap: 20px; margin-top: 36px; padding-top: 26px; }
-    .footer-badges { gap: 8px; }
-    .footer-sep { display: none; }
-    .divider { margin: 0 12px; }
-  }
-</style>
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.80;
+      z-index: 0;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(13, 31, 60, 0.78) 0%, rgba(22, 45, 82, 0.7) 50%, rgba(30, 71, 133, 0.6) 100%);
+      z-index: 1;
+    }
+
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-shapes::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74, 144, 217, 0.18) 0%, transparent 70%);
+      right: -120px;
+      top: -120px;
+    }
+
+    .hero-shapes::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 50%;
+      right: 10%;
+      bottom: 10%;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky-pale);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--sky);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      font-weight: 400;
+      line-height: 1.08;
+      color: var(--white);
+      letter-spacing: -0.015em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.35s forwards;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--sky-pale);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.8;
+      max-width: 580px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 44px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.65s forwards;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--navy);
+      padding: 13px 32px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--sky-pale);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      padding: 13px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 52px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1s forwards;
+    }
+
+    .scroll-line {
+      width: 36px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 96px 52px;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 18px;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--blue-light);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    h2 em {
+      font-style: italic;
+      color: var(--blue-light);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--gray-light);
+      margin: 0 52px;
+    }
+
+    /* VISION */
+    #vision {
+      background: var(--white);
+    }
+
+    .vision-layout {
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 80px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    .vision-intro p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .vision-intro p strong {
+      color: var(--text-body);
+      font-weight: 500;
+    }
+
+    .vision-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pillar {
+      padding: 24px 28px;
+      border-left: 3px solid var(--gray-light);
+      background: var(--off-white);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .pillar:hover {
+      border-color: var(--blue-light);
+      background: var(--accent-glow);
+    }
+
+    .pillar-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 7px;
+    }
+
+    .pillar h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .pillar p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* OPPORTUNITY */
+    #opportunity {
+      background: var(--navy);
+    }
+
+    #opportunity .section-eyebrow {
+      color: var(--sky-pale);
+    }
+
+    #opportunity .section-eyebrow::before {
+      background: var(--sky-pale);
+    }
+
+    #opportunity h2 {
+      color: var(--white);
+    }
+
+    #opportunity h2 em {
+      color: var(--sky-pale);
+    }
+
+    .opp-intro {
+      max-width: 640px;
+      margin-top: 20px;
+      margin-bottom: 56px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .opp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .opp-card {
+      background: var(--navy);
+      padding: 44px 36px;
+      transition: background 0.3s;
+      border-top: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .opp-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13, 31, 60, 0.35) 0%, rgba(13, 31, 60, 0.88) 65%);
+    }
+
+    .opp-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .opp-card:hover {
+      background-color: var(--navy-mid);
+      border-top-color: var(--sky);
+    }
+
+    .opp-card-1 {
+      background-image: url('src/assets/mines.png');
+    }
+
+    .opp-card-2 {
+      background-image: url('src/assets/coalresource.png');
+    }
+
+    .opp-card-3 {
+      background-image: url('src/assets/coal.png');
+    }
+
+    /* Show all three opportunity cards without stagger delay */
+    .opp-card.reveal,
+    .opp-card.reveal-d1,
+    .opp-card.reveal-d2,
+    .opp-card.reveal-d3 {
+      transition-delay: 0s !important;
+    }
+
+    .opp-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: rgba(74, 144, 217, 0.2);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .opp-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .opp-card p {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+    }
+
+    .opp-tag {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sky);
+      border-bottom: 1px solid rgba(74, 144, 217, 0.3);
+      padding-bottom: 2px;
+    }
+
+    /* RESEARCH */
+    #research {
+      background: var(--off-white);
+    }
+
+    .themes-intro {
+      max-width: 600px;
+      margin-top: 16px;
+      margin-bottom: 56px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .theme-card {
+      background: var(--white);
+      border: 1px solid var(--border-sub);
+      padding: 44px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    .theme-card:hover {
+      border-color: var(--border);
+      box-shadow: 0 8px 40px rgba(13, 31, 60, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .theme-bg-letter {
+      position: absolute;
+      top: -16px;
+      right: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      font-weight: 600;
+      color: var(--navy);
+      opacity: 0.04;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .theme-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: var(--blue-light);
+    }
+
+    .theme-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .theme-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .theme-outcomes {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gray-light);
+    }
+
+    .theme-outcomes-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .outcomes-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .outcome-tag {
+      padding: 4px 12px;
+      background: var(--off-white);
+      border: 1px solid var(--gray-light);
+      font-size: 0.75rem;
+      color: var(--gray-dark);
+    }
+
+    /* APPROACH */
+    #approach {
+      background: var(--white);
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 56px;
+      background: var(--gray-light);
+    }
+
+    .approach-step {
+      background: var(--white);
+      padding: 40px 32px;
+      transition: background 0.3s;
+    }
+
+    .approach-step:hover {
+      background: var(--off-white);
+    }
+
+    .step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 16px;
+    }
+
+    .approach-step h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .approach-step p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* TEAM */
+    #team {
+      background: var(--off-white);
+    }
+
+    .team-intro {
+      max-width: 580px;
+      margin-top: 16px;
+      margin-bottom: 56px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* Leadership cards — 3-column */
+    .leaders-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .leader-card {
+      perspective: 1000px;
+      min-height: 158px;
+    }
+
+    .leader-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 158px;
+      transform-style: preserve-3d;
+      transition: transform 0.45s ease;
+    }
+
+    .leader-card:hover .leader-inner {
+      transform: rotateY(180deg);
+    }
+
+    .leader-front,
+    .leader-back {
+      position: absolute;
+      inset: 0;
+      background: var(--white);
+      border: 1px solid transparent;
+      padding: 12px 12px 10px;
+      backface-visibility: hidden;
+    }
+
+    .leader-front {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .leader-back {
+      transform: rotateY(180deg);
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      border-color: var(--border-sub);
+    }
+
+    .leader-card:hover .leader-front {
+      border-color: var(--border-sub);
+    }
+
+    .leader-top {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .leader-photo {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid var(--border-sub);
+      background: var(--off-white);
+    }
+
+    /* .leader-info intentionally left blank */
+    .leader-name {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+
+    .leader-title {
+      font-size: 0.75rem;
+      color: var(--blue-light);
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .leader-sub {
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Align leadership links under the text column (not under the photo). */
+    .leader-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-left: calc(100px + 14px);
+    }
+
+    .leader-bio {
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .leader-back-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+
+    .leader-back-role {
+      font-size: 0.74rem;
+      color: var(--blue-light);
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    .leader-back-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .leader-expertise-title {
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .leader-expertise-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .leader-expertise-list li {
+      margin: 0;
+      padding: 3px 8px;
+      border: 1px solid var(--border-sub);
+      background: var(--white);
+      font-size: 0.7rem;
+      line-height: 1.35;
+      color: var(--text-muted);
+      border-radius: 999px;
+    }
+
+    .profile-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .profile-link:hover {
+      color: var(--sky);
+      border-color: var(--sky);
+    }
+
+    .profile-link svg {
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Faculty grid */
+    .faculty-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--gray-light);
+    }
+
+    .faculty-card {
+      perspective: 1000px;
+      min-height: 158px;
+    }
+
+    .faculty-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 158px;
+      transform-style: preserve-3d;
+      transition: transform 0.45s ease;
+    }
+
+    .faculty-card:hover .faculty-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Disable flip for specific faculty cards with missing/unknown details */
+    .faculty-card.no-flip:hover .faculty-inner {
+      transform: none !important;
+    }
+
+    .faculty-front,
+    .faculty-back {
+      position: absolute;
+      inset: 0;
+      background: var(--white);
+      padding: 12px 12px 10px;
+      backface-visibility: hidden;
+      border: 1px solid transparent;
+    }
+
+    .faculty-front {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .faculty-back {
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      background: var(--off-white);
+      border-color: var(--border-sub);
+    }
+
+    .faculty-card:hover .faculty-front {
+      border-color: var(--border-sub);
+    }
+
+    .faculty-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid var(--border-sub);
+      background: var(--off-white);
+      flex-shrink: 0;
+    }
+
+    .faculty-card h5 {
+      margin: 0;
+      font-size: 0.87rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .faculty-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .faculty-card .fc-area {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .faculty-card .profile-link {
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+
+    .faculty-back-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .faculty-back .fc-area.fc-expertise {
+      color: var(--blue-light);
+      font-weight: 500;
+    }
+
+    .faculty-back-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .faculty-bio {
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .bio-toggle {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      margin-left: 6px;
+    }
+
+    .bio-toggle:hover {
+      color: var(--sky);
+      border-color: var(--sky);
+    }
+
+    .bio-card {
+      display: none;
+      margin-top: 18px;
+      background: var(--white);
+      border: 1px solid var(--border-sub);
+      padding: 18px 20px;
+    }
+
+    .bio-card.is-open {
+      display: block;
+    }
+
+    .bio-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .bio-card p {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .team-subsection {
+      margin-top: 28px;
+    }
+
+    .team-subsection .faculty-label {
+      margin-bottom: 12px;
+    }
+
+    .simple-people-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--gray-light);
+    }
+
+    .simple-person-card {
+      perspective: 1000px;
+      min-height: 132px;
+    }
+
+    .simple-person-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 132px;
+      transform-style: preserve-3d;
+      transition: transform 0.45s ease;
+    }
+
+    .simple-person-card:hover .simple-person-inner {
+      transform: rotateY(180deg);
+    }
+
+    .simple-person-front,
+    .simple-person-back {
+      position: absolute;
+      inset: 0;
+      background: var(--white);
+      padding: 18px 16px;
+      border: 1px solid transparent;
+      backface-visibility: hidden;
+    }
+
+    .simple-person-front {
+      display: flex;
+      align-items: center;
+    }
+
+    .simple-person-back {
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--off-white);
+      border-color: var(--border-sub);
+    }
+
+    .simple-person-card:hover .simple-person-front {
+      border-color: var(--border-sub);
+      box-shadow: 0 4px 18px rgba(13, 31, 60, 0.06);
+    }
+
+    .simple-person-card.no-flip .simple-person-inner {
+      transform: none !important;
+    }
+
+    .simple-person-card.no-flip:hover .simple-person-inner {
+      transform: none;
+    }
+
+    .simple-person-card.no-flip .simple-person-back {
+      display: none;
+    }
+
+    .simple-person-top {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .simple-person-photo {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid var(--border-sub);
+      background: var(--off-white);
+    }
+
+    .simple-person-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .simple-person-role {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .simple-person-back-text {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .simple-person-back-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .simple-person-back-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .simple-person-expertise {
+      font-size: 0.74rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    /* CONTACT */
+    #contact {
+      background: linear-gradient(150deg, var(--blue) 0%, var(--navy-mid) 100%);
+      padding: 110px 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    #contact .section-eyebrow {
+      justify-content: center;
+      color: var(--sky-pale);
+    }
+
+    #contact .section-eyebrow::before {
+      display: none;
+    }
+
+    #contact h2 {
+      color: var(--white);
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    #contact h2 em {
+      color: var(--sky-pale);
+    }
+
+    .contact-body {
+      max-width: 500px;
+      margin: 0 auto 44px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .contact-cta {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .contact-meta {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 4px;
+    }
+
+    .meta-value {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 32px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer p {
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer-badges {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .footer-sep {
+      color: rgba(255, 255, 255, 0.12);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-d1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-d2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-d3 {
+      transition-delay: 0.3s;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav {
+        padding: 0 28px;
+        height: 88px;
+      }
+
+      .nav-brand-logo {
+        width: 180px;
+        height: 180px;
+      }
+
+      .nav-links {
+        gap: 24px;
+      }
+
+      .leader-links {
+        margin-left: 0;
+      }
+
+      .leaders-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .leader-top {
+        align-items: center;
+      }
+
+      .leader-front {
+        gap: 12px;
+      }
+
+      .leader-back-content {
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 18px;
+        height: 78px;
+      }
+
+      .nav-brand-logo {
+        width: 136px;
+        height: 136px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 60px 18px;
+      }
+
+      #hero {
+        padding: 98px 18px 64px;
+        min-height: auto;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.6rem;
+        letter-spacing: 0.12em;
+        margin-bottom: 20px;
+      }
+
+      .hero-desc {
+        font-size: 0.96rem;
+        line-height: 1.7;
+      }
+
+      .hero-scroll {
+        display: none;
+      }
+
+      .hero-cta {
+        margin-top: 28px;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        padding: 11px 18px;
+        font-size: 0.76rem;
+      }
+
+      .vision-layout,
+      .leaders-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .opp-grid,
+      .themes-grid,
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faculty-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .simple-people-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .leader-front,
+      .faculty-front {
+        gap: 10px;
+      }
+
+      .leader-photo,
+      .faculty-photo,
+      .simple-person-photo {
+        width: 82px;
+        height: 82px;
+      }
+
+      .leader-back-content,
+      .faculty-back-content,
+      .simple-person-back-content {
+        gap: 7px;
+      }
+
+      .divider {
+        margin: 0 18px;
+      }
+
+      footer {
+        padding: 24px 18px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .footer-badges {
+        justify-content: center;
+        flex-wrap: wrap;
+        row-gap: 8px;
+        column-gap: 12px;
+      }
+
+      .footer-badge {
+        font-size: 0.58rem;
+        letter-spacing: 0.09em;
+      }
+
+      #contact {
+        padding: 72px 18px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        height: 76px;
+        padding: 0 12px;
+      }
+
+      .nav-brand-logo {
+        width: 124px;
+        height: 124px;
+      }
+
+      section {
+        padding: 48px 12px;
+      }
+
+      #hero {
+        padding: 84px 12px 52px;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 11vw, 3.2rem);
+        margin-bottom: 18px;
+      }
+
+      h2 {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+      }
+
+      .opp-card,
+      .theme-card,
+      .approach-step {
+        padding: 26px 18px;
+      }
+
+      .leaders-row {
+        gap: 14px;
+      }
+
+      .leader-top,
+      .faculty-front,
+      .simple-person-top {
+        gap: 8px;
+      }
+
+      .leader-photo,
+      .faculty-photo,
+      .simple-person-photo {
+        width: 68px;
+        height: 68px;
+      }
+
+      .leader-name {
+        font-size: 0.88rem;
+      }
+
+      .leader-title,
+      .leader-sub,
+      .faculty-card .fc-area,
+      .simple-person-role {
+        font-size: 0.72rem;
+      }
+
+      .faculty-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .simple-people-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-meta {
+        gap: 20px;
+        margin-top: 36px;
+        padding-top: 26px;
+      }
+
+      .footer-badges {
+        gap: 8px;
+      }
+
+      .footer-sep {
+        display: none;
+      }
+
+      .divider {
+        margin: 0 12px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
+  <div class="progress-bar" id="progressBar"></div>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-brand">
-    <img class="nav-brand-logo" src="src/assets/cse_logo.jpg" alt="Centre for Sustainable Energy logo">
-    <div class="nav-brand-text">
-      <!-- <span class="nav-brand-main">Centre for Sustainable Energy</span>
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-brand">
+      <img class="nav-brand-logo" src="src/assets/cse_logo.jpg" alt="Centre for Sustainable Energy logo">
+      <div class="nav-brand-text">
+        <!-- <span class="nav-brand-main">Centre for Sustainable Energy</span>
       <span class="nav-brand-sub">IIT Madras × Coal India Limited</span> -->
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#vision">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#approach">Approach</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="metadata">
-    <source src="src/assets/home_cse.mp4" type="video/mp4">
-  </video>
-  <div class="hero-video-overlay"></div>
-  <div class="hero-shapes"></div>
-  <div class="hero-grid-bg"></div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow"><span class="eyebrow-dot"></span>IIT Madras · Coal India Limited · Est. 2025</div>
-    <h1>Powering India's<br><em>Energy Transition</em></h1>
-    <p class="hero-desc">A world-class centre of excellence at IIT Madras, in strategic partnership with Coal India Limited, leading India's shift to a low-carbon economy while securing energy for the future.</p>
-    <div class="hero-cta">
-      <a href="#research" class="btn-primary">Explore Our Research</a>
-      <a href="#contact" class="btn-ghost">Partner With Us</a>
-    </div>
-  </div>
-  <div class="hero-scroll"><span class="scroll-line"></span>Scroll to explore</div>
-</section>
-
-<div class="divider"></div>
-
-<!-- VISION -->
-<section id="vision">
-  <div class="section-eyebrow reveal">Our Vision</div>
-  <h2 class="reveal">A Centre of <em>Excellence</em><br>Built for India's Future</h2>
-  <div class="vision-layout">
-    <div class="vision-intro reveal">
-      <p>Coal forms the foundation of India's energy security, contributing to over <strong>85% of its energy needs</strong>. At the same time, it presents a transformative opportunity — the resources and expertise within India's coal sector can be channelled to enable the nation to meet its ambitious 2070 net-zero goals.</p>
-      <p><strong>Coal India Limited (CIL)</strong>, as the pre-eminent energy resource provider, is uniquely positioned to lead this evolution — from energy supplier to energy innovator. The Centre for Sustainable Energy exists to make that transition a reality.</p>
-      <p>Keeping the future of CIL and the national energy security agenda at the heart of all activity, the Centre brings together world-class researchers, industry practitioners, and policy thinkers in a structured, outcomes-driven collaboration.</p>
-    </div>
-    <div class="vision-pillars reveal reveal-d2">
-      <div class="pillar">
-        <div class="pillar-num">01 — Mission</div>
-        <h4>Industry-Led Research</h4>
-        <p>All research is anchored in challenges of direct strategic relevance to CIL, with a dynamic feedback loop ensuring continuous alignment with industrial needs.</p>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">02 — Model</div>
-        <h4>Hub-and-Spoke Collaboration</h4>
-        <p>IIT Madras serves as the central hub, coordinating with CIL, peer institutions, and global industry partners across a managed portfolio of projects.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">03 — Impact</div>
-        <h4>Technology to Deployment</h4>
-        <p>Projects span the full innovation spectrum — from foundational science through to pilot-scale demonstration — ensuring discoveries translate into real-world solutions.</p>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#vision">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+      <source src="src/assets/home_cse.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+    <div class="hero-shapes"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>IIT Madras · Coal India Limited · Est. 2025</div>
+      <h1>Powering India's<br><em>Energy Transition</em></h1>
+      <p class="hero-desc">A world-class centre of excellence at IIT Madras, in strategic partnership with Coal India
+        Limited, leading India's shift to a low-carbon economy while securing energy for the future.</p>
+      <div class="hero-cta">
+        <a href="#research" class="btn-primary">Explore Our Research</a>
+        <a href="#contact" class="btn-ghost">Partner With Us</a>
       </div>
     </div>
-  </div>
-</section>
+    <div class="hero-scroll"><span class="scroll-line"></span>Scroll to explore</div>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- OPPORTUNITY -->
-<section id="opportunity">
-  <div class="section-eyebrow reveal">Strategic Opportunity</div>
-  <h2 class="reveal">Three Pillars of<br><em>CIL's Future</em></h2>
-  <p class="opp-intro reveal">Coal India holds a unique portfolio of assets that, with the right research and innovation, can be transformed into platforms for clean energy, sustainable materials, and next-generation infrastructure.</p>
-  <div class="opp-grid">
-    <div class="opp-card opp-card-1 reveal">
-      <h3>Land Assets</h3>
-      <p>Extensive landholdings across India offer significant potential for large-scale renewable energy generation — creating clean power at industrial scale and establishing CIL as a renewable energy leader.</p>
-      <span class="opp-tag">Renewable Energy Development</span>
-    </div>
-    <div class="opp-card opp-card-2 reveal reveal-d2">
-      <h3>Spent Mines</h3>
-      <p>Decommissioned mines, with their geological stability and existing infrastructure, present untapped opportunities for energy storage, sustainable computing, and innovative circular repurposing.</p>
-      <span class="opp-tag">Infrastructure Repurposing</span>
-    </div>
-    <div class="opp-card opp-card-3 reveal reveal-d3">
-      <h3>Coal Resources</h3>
-      <p>Coal's rich carbon chemistry can yield high-value advanced materials — clean fuels and functional composites — positioning CIL at the forefront of sustainable materials innovation.</p>
-      <span class="opp-tag">Advanced Materials &amp; Clean Fuels</span>
-    </div>
-  </div>
-</section>
-
-<div class="divider" style="margin:0; background:rgba(255,255,255,0.05);"></div>
-
-<!-- RESEARCH -->
-<section id="research">
-  <div class="section-eyebrow reveal">Research Programme</div>
-  <h2 class="reveal">Four Thematic <em>Research Areas</em></h2>
-  <p class="themes-intro reveal">Our research programme is structured around four interconnected themes, each addressing a critical dimension of CIL's energy transition — from materials science and circular economy to environmental stewardship.</p>
-  <div class="themes-grid">
-    <div class="theme-card reveal">
-      <div class="theme-bg-letter">A</div>
-      <div class="theme-icon"><i class="fa-solid fa-recycle" aria-hidden="true"></i></div>
-      <h3>Sustainable Materials &amp; Circular Economy</h3>
-      <p>Transforming coal processing by-products into high-value functional materials, and developing systems to recover critical minerals from the waste streams of renewable energy technologies — addressing both waste reduction and strategic resource independence.</p>
-      <div class="theme-outcomes">
-        <div class="theme-outcomes-label">Key Directions</div>
-        <div class="outcomes-list">
-          <span class="outcome-tag">Biodegradable composites</span>
-          <span class="outcome-tag">Critical mineral recovery</span>
-          <span class="outcome-tag">Battery &amp; solar recycling</span>
+  <!-- VISION -->
+  <section id="vision">
+    <div class="section-eyebrow reveal">Our Vision</div>
+    <h2 class="reveal">A Centre of <em>Excellence</em><br>Built for India's Future</h2>
+    <div class="vision-layout">
+      <div class="vision-intro reveal">
+        <p>Coal forms the foundation of India's energy security, contributing to over <strong>85% of its energy
+            needs</strong>. At the same time, it presents a transformative opportunity — the resources and expertise
+          within India's coal sector can be channelled to enable the nation to meet its ambitious 2070 net-zero goals.
+        </p>
+        <p><strong>Coal India Limited (CIL)</strong>, as the pre-eminent energy resource provider, is uniquely
+          positioned to lead this evolution — from energy supplier to energy innovator. The Centre for Sustainable
+          Energy exists to make that transition a reality.</p>
+        <p>Keeping the future of CIL and the national energy security agenda at the heart of all activity, the Centre
+          brings together world-class researchers, industry practitioners, and policy thinkers in a structured,
+          outcomes-driven collaboration.</p>
+      </div>
+      <div class="vision-pillars reveal reveal-d2">
+        <div class="pillar">
+          <div class="pillar-num">01 — Mission</div>
+          <h4>Industry-Led Research</h4>
+          <p>All research is anchored in challenges of direct strategic relevance to CIL, with a dynamic feedback loop
+            ensuring continuous alignment with industrial needs.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02 — Model</div>
+          <h4>Hub-and-Spoke Collaboration</h4>
+          <p>IIT Madras serves as the central hub, coordinating with CIL, peer institutions, and global industry
+            partners across a managed portfolio of projects.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03 — Impact</div>
+          <h4>Technology to Deployment</h4>
+          <p>Projects span the full innovation spectrum — from foundational science through to pilot-scale demonstration
+            — ensuring discoveries translate into real-world solutions.</p>
         </div>
       </div>
     </div>
-    <div class="theme-card reveal reveal-d2">
-      <div class="theme-bg-letter">B</div>
-      <div class="theme-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
-      <h3>Mine Repurposing &amp; Fleet Electrification</h3>
-      <p>Transforming legacy mining infrastructure into innovation platforms — from electrifying the CIL vehicle fleet and converting spent mines to sustainable facilities, to deploying underground energy storage and exploring advanced low-carbon power for mine operations.</p>
-      <div class="theme-outcomes">
-        <div class="theme-outcomes-label">Key Directions</div>
-        <div class="outcomes-list">
-          <span class="outcome-tag">Fleet electrification</span>
-          <span class="outcome-tag">Mine asset conversion</span>
-          <span class="outcome-tag">Underground energy storage</span>
-          <span class="outcome-tag">Low-carbon power</span>
-        </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- OPPORTUNITY -->
+  <section id="opportunity">
+    <div class="section-eyebrow reveal">Strategic Opportunity</div>
+    <h2 class="reveal">Three Pillars of<br><em>CIL's Future</em></h2>
+    <p class="opp-intro reveal">Coal India holds a unique portfolio of assets that, with the right research and
+      innovation, can be transformed into platforms for clean energy, sustainable materials, and next-generation
+      infrastructure.</p>
+    <div class="opp-grid">
+      <div class="opp-card opp-card-1 reveal">
+        <h3>Land Assets</h3>
+        <p>Extensive landholdings across India offer significant potential for large-scale renewable energy generation —
+          creating clean power at industrial scale and establishing CIL as a renewable energy leader.</p>
+        <span class="opp-tag">Renewable Energy Development</span>
+      </div>
+      <div class="opp-card opp-card-2 reveal reveal-d2">
+        <h3>Spent Mines</h3>
+        <p>Decommissioned mines, with their geological stability and existing infrastructure, present untapped
+          opportunities for energy storage, sustainable computing, and innovative circular repurposing.</p>
+        <span class="opp-tag">Infrastructure Repurposing</span>
+      </div>
+      <div class="opp-card opp-card-3 reveal reveal-d3">
+        <h3>Coal Resources</h3>
+        <p>Coal's rich carbon chemistry can yield high-value advanced materials — clean fuels and functional composites
+          — positioning CIL at the forefront of sustainable materials innovation.</p>
+        <span class="opp-tag">Advanced Materials &amp; Clean Fuels</span>
       </div>
     </div>
-    <div class="theme-card reveal reveal-d1">
-      <div class="theme-bg-letter">C</div>
-      <div class="theme-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
-      <h3>Environmental Remediation &amp; Pollution Control</h3>
-      <p>Developing innovative, nature-inspired technologies to address contamination challenges specific to coal mining environments — targeting scalable, eco-friendly solutions for treating mine wastewater and restoring affected ecosystems.</p>
-      <div class="theme-outcomes">
-        <div class="theme-outcomes-label">Key Directions</div>
-        <div class="outcomes-list">
-          <span class="outcome-tag">Wastewater treatment</span>
-          <span class="outcome-tag">Photocatalytic remediation</span>
-          <span class="outcome-tag">Scalable clean-up tech</span>
-        </div>
-      </div>
-    </div>
-    <div class="theme-card reveal reveal-d3">
-      <div class="theme-bg-letter">D</div>
-      <div class="theme-icon"><i class="fa-solid fa-battery-three-quarters" aria-hidden="true"></i></div>
-      <h3>Advanced Materials for Energy Storage</h3>
-      <p>Valorising coal and its derivatives into next-generation carbon materials for energy storage and conversion — reducing India's import dependency in critical clean energy supply chains and enabling domestic manufacturing of advanced energy components.</p>
-      <div class="theme-outcomes">
-        <div class="theme-outcomes-label">Key Directions</div>
-        <div class="outcomes-list">
-          <span class="outcome-tag">Graphenic materials</span>
-          <span class="outcome-tag">Energy storage devices</span>
-          <span class="outcome-tag">Fuel cell components</span>
-          <span class="outcome-tag">Import substitution</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider" style="margin:0; background:rgba(255,255,255,0.05);"></div>
 
-<!-- APPROACH -->
-<section id="approach">
-  <div class="section-eyebrow reveal">How We Work</div>
-  <h2 class="reveal">A Structured <em>Approach</em><br>to Innovation</h2>
-  <div class="approach-grid">
-    <div class="approach-step reveal">
-      <div class="step-num">Step 01</div>
-      <h4>Problem Identification</h4>
-      <p>Research priorities are co-developed with CIL and CMPDI, ensuring every project addresses challenges of real operational and strategic significance to Coal India's evolving mandate.</p>
-    </div>
-    <div class="approach-step reveal reveal-d2">
-      <div class="step-num">Step 02</div>
-      <h4>Multi-Disciplinary Research</h4>
-      <p>Expert faculty across chemical engineering, materials science, earth sciences, computer science, and policy work in concert — combining perspectives to produce holistic, deployable solutions.</p>
-    </div>
-    <div class="approach-step reveal reveal-d3">
-      <div class="step-num">Step 03</div>
-      <h4>Pilot &amp; Deployment</h4>
-      <p>Technologies progress systematically from laboratory validation through pilot demonstration, with commercialisation pathways co-designed with CIL's operational teams from the outset.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="section-eyebrow reveal">Our People</div>
-  <h2 class="reveal">Led by <em>World-Class</em><br>Researchers</h2>
-  <p class="team-intro reveal">The Centre brings together some of IIT Madras's most accomplished faculty, united by a shared commitment to translating research excellence into industrial impact for India's energy sector.</p>
-
-  <!-- Leadership: 3-column -->
-  <div class="leaders-row">
-
-    <div class="leader-card reveal">
-      <div class="leader-inner">
-        <div class="leader-front">
-          <div class="leader-top">
-            <img class="leader-photo" src="src/assets/profsatya.webp" alt="Dr. Satyanarayanan Seshadri">
-            <div class="leader-info">
-              <div class="leader-name">Dr. Satyanarayanan Seshadri</div>
-              <div class="leader-title">Head, Energy Consortium — IIT Madras</div>
-              <div class="leader-sub">Co-Lead, Centre for Sustainable Energy</div>
-            </div>
-          </div>
-          <div class="leader-links">
-            <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-satyanarayanans" target="_blank" rel="noopener">
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-              IIT Madras Profile
-            </a>
-            <a class="profile-link" href="https://www.linkedin.com/in/satyaseshadri/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 12 12" fill="currentColor"><rect x="1" y="1" width="10" height="10" rx="1"/><path fill="white" d="M3 4.5h1.5V9H3zM3.75 3a.75.75 0 100 1.5.75.75 0 000-1.5zM5.5 4.5H7v.6c.3-.5.8-.7 1.3-.7 1.4 0 1.7.9 1.7 2.1V9H8.5V6.8c0-.5 0-1.1-.7-1.1-.7 0-.8.6-.8 1.1V9H5.5V4.5z"/></svg>
-              LinkedIn
-            </a>
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-eyebrow reveal">Research Programme</div>
+    <h2 class="reveal">Four Thematic <em>Research Areas</em></h2>
+    <p class="themes-intro reveal">Our research programme is structured around four interconnected themes, each
+      addressing a critical dimension of CIL's energy transition — from materials science and circular economy to
+      environmental stewardship.</p>
+    <div class="themes-grid">
+      <div class="theme-card reveal">
+        <div class="theme-bg-letter">A</div>
+        <div class="theme-icon"><i class="fa-solid fa-recycle" aria-hidden="true"></i></div>
+        <h3>Sustainable Materials &amp; Circular Economy</h3>
+        <p>Transforming coal processing by-products into high-value functional materials, and developing systems to
+          recover critical minerals from the waste streams of renewable energy technologies — addressing both waste
+          reduction and strategic resource independence.</p>
+        <div class="theme-outcomes">
+          <div class="theme-outcomes-label">Key Directions</div>
+          <div class="outcomes-list">
+            <span class="outcome-tag">Biodegradable composites</span>
+            <span class="outcome-tag">Critical mineral recovery</span>
+            <span class="outcome-tag">Battery &amp; solar recycling</span>
           </div>
         </div>
-        <div class="leader-back">
-          <div class="leader-back-content">
-            <div class="leader-back-role">Professor, IIT Madras</div>
-            <div class="leader-expertise-title">Key Areas of Expertise</div>
-            <ul class="leader-expertise-list">
-              <li>Waste heat recovery</li>
-              <li>Industrial decarbonization</li>
-              <li>High-temperature heat pumps</li>
-              <li>Emission monitoring (PM, NOx, SOx)</li>
-              <li>Aerosol technology</li>
-              <li>ORC systems</li>
-              <li>Process heating electrification</li>
-            </ul>
-            <div class="leader-back-links">
-              <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-satyanarayanans" target="_blank" rel="noopener">IITM Profile</a>
-              <a class="profile-link" href="https://www.linkedin.com/in/satyaseshadri/" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="profile-link" href="https://energlab.org/" target="_blank" rel="noopener">EnERG Lab</a>
-              <a class="profile-link" href="https://scholar.google.com/citations?user=trCkcp4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar</a>
-            </div>
-            <p class="leader-bio">Professor at IIT Madras leading industrial energy systems and decarbonization research. <a href="#" class="bio-toggle" data-bio-toggle="satya-bio-card">Read full bio</a></p>
+      </div>
+      <div class="theme-card reveal reveal-d2">
+        <div class="theme-bg-letter">B</div>
+        <div class="theme-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+        <h3>Mine Repurposing &amp; Fleet Electrification</h3>
+        <p>Transforming legacy mining infrastructure into innovation platforms — from electrifying the CIL vehicle fleet
+          and converting spent mines to sustainable facilities, to deploying underground energy storage and exploring
+          advanced low-carbon power for mine operations.</p>
+        <div class="theme-outcomes">
+          <div class="theme-outcomes-label">Key Directions</div>
+          <div class="outcomes-list">
+            <span class="outcome-tag">Fleet electrification</span>
+            <span class="outcome-tag">Mine asset conversion</span>
+            <span class="outcome-tag">Underground energy storage</span>
+            <span class="outcome-tag">Low-carbon power</span>
+          </div>
+        </div>
+      </div>
+      <div class="theme-card reveal reveal-d1">
+        <div class="theme-bg-letter">C</div>
+        <div class="theme-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div>
+        <h3>Environmental Remediation &amp; Pollution Control</h3>
+        <p>Developing innovative, nature-inspired technologies to address contamination challenges specific to coal
+          mining environments — targeting scalable, eco-friendly solutions for treating mine wastewater and restoring
+          affected ecosystems.</p>
+        <div class="theme-outcomes">
+          <div class="theme-outcomes-label">Key Directions</div>
+          <div class="outcomes-list">
+            <span class="outcome-tag">Wastewater treatment</span>
+            <span class="outcome-tag">Photocatalytic remediation</span>
+            <span class="outcome-tag">Scalable clean-up tech</span>
+          </div>
+        </div>
+      </div>
+      <div class="theme-card reveal reveal-d3">
+        <div class="theme-bg-letter">D</div>
+        <div class="theme-icon"><i class="fa-solid fa-battery-three-quarters" aria-hidden="true"></i></div>
+        <h3>Advanced Materials for Energy Storage</h3>
+        <p>Valorising coal and its derivatives into next-generation carbon materials for energy storage and conversion —
+          reducing India's import dependency in critical clean energy supply chains and enabling domestic manufacturing
+          of advanced energy components.</p>
+        <div class="theme-outcomes">
+          <div class="theme-outcomes-label">Key Directions</div>
+          <div class="outcomes-list">
+            <span class="outcome-tag">Graphenic materials</span>
+            <span class="outcome-tag">Energy storage devices</span>
+            <span class="outcome-tag">Fuel cell components</span>
+            <span class="outcome-tag">Import substitution</span>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="leader-card reveal reveal-d2">
-      <div class="leader-inner">
-        <div class="leader-front">
-          <div class="leader-top">
-            <img class="leader-photo" src="src/assets/rajinish.png" alt="Dr. Rajnish Kumar">
-            <div class="leader-info">
-              <div class="leader-name">Dr. Rajnish Kumar</div>
-              <div class="leader-title">Head, School of Sustainability — IIT Madras</div>
-              <div class="leader-sub">Co-Lead, Centre for Sustainable Energy</div>
-            </div>
-          </div>
-          <div class="leader-links">
-            <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Rajnish+Kumar" target="_blank" rel="noopener">
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-              IIT Madras Profile
-            </a>
-            <a class="profile-link" href="https://www.linkedin.com/in/rajnish-kumar-5632341b4/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 12 12" fill="currentColor"><rect x="1" y="1" width="10" height="10" rx="1"/><path fill="white" d="M3 4.5h1.5V9H3zM3.75 3a.75.75 0 100 1.5.75.75 0 000-1.5zM5.5 4.5H7v.6c.3-.5.8-.7 1.3-.7 1.4 0 1.7.9 1.7 2.1V9H8.5V6.8c0-.5 0-1.1-.7-1.1-.7 0-.8.6-.8 1.1V9H5.5V4.5z"/></svg>
-              LinkedIn
-            </a>
-          </div>
-        </div>
-        <div class="leader-back">
-          <div class="leader-back-content">
-            <div class="leader-back-role">Professor, IIT Madras (FRSC)</div>
-            <div class="leader-expertise-title">Key Areas of Expertise</div>
-            <ul class="leader-expertise-list">
-              <li>Gas hydrates</li>
-              <li>Unconventional energy recovery</li>
-              <li>CO2 capture &amp; sequestration</li>
-              <li>Water purification &amp; desalination</li>
-              <li>Hydrothermal liquefaction</li>
-            </ul>
-            <div class="leader-back-links">
-              <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Rajnish+Kumar" target="_blank" rel="noopener">IITM Profile</a>
-              <a class="profile-link" href="https://www.linkedin.com/in/rajnish-kumar-5632341b4/" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="profile-link" href="https://scholar.google.co.in/citations?user=P21tbTMAAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar</a>
-            </div>
-            <p class="leader-bio">Professor at IIT Madras leading sustainability, net-zero technologies, and process innovation. <a href="#" class="bio-toggle" data-bio-toggle="rajnish-bio-card">Read full bio</a></p>
-          </div>
-        </div>
+  <div class="divider"></div>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="section-eyebrow reveal">How We Work</div>
+    <h2 class="reveal">A Structured <em>Approach</em><br>to Innovation</h2>
+    <div class="approach-grid">
+      <div class="approach-step reveal">
+        <div class="step-num">Step 01</div>
+        <h4>Problem Identification</h4>
+        <p>Research priorities are co-developed with CIL and CMPDI, ensuring every project addresses challenges of real
+          operational and strategic significance to Coal India's evolving mandate.</p>
+      </div>
+      <div class="approach-step reveal reveal-d2">
+        <div class="step-num">Step 02</div>
+        <h4>Multi-Disciplinary Research</h4>
+        <p>Expert faculty across chemical engineering, materials science, earth sciences, computer science, and policy
+          work in concert — combining perspectives to produce holistic, deployable solutions.</p>
+      </div>
+      <div class="approach-step reveal reveal-d3">
+        <div class="step-num">Step 03</div>
+        <h4>Pilot &amp; Deployment</h4>
+        <p>Technologies progress systematically from laboratory validation through pilot demonstration, with
+          commercialisation pathways co-designed with CIL's operational teams from the outset.</p>
       </div>
     </div>
+  </section>
 
-    <div class="leader-card reveal reveal-d3">
-      <div class="leader-inner">
-        <div class="leader-front">
-          <div class="leader-top">
-            <img class="leader-photo" src="src/assets/vidhya.jpeg" alt="Dr. Vidya Kishore">
-            <div class="leader-info">
-              <div class="leader-name">Dr. Vidya Kishore</div>
-              <div class="leader-title">Chief Technology Officer</div>
-              <div class="leader-sub">Centre for Sustainable Energy</div>
-            </div>
-          </div>
-          <div class="leader-links">
-            <a class="profile-link" href="https://www.linkedin.com/in/vidyakishore/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 12 12" fill="currentColor"><rect x="1" y="1" width="10" height="10" rx="1"/><path fill="white" d="M3 4.5h1.5V9H3zM3.75 3a.75.75 0 100 1.5.75.75 0 000-1.5zM5.5 4.5H7v.6c.3-.5.8-.7 1.3-.7 1.4 0 1.7.9 1.7 2.1V9H8.5V6.8c0-.5 0-1.1-.7-1.1-.7 0-.8.6-.8 1.1V9H5.5V4.5z"/></svg>
-              LinkedIn
-            </a>
-          </div>
-        </div>
-        <div class="leader-back">
-          <div class="leader-back-content">
-            <div class="leader-back-role">Chief Technology Officer, CIL Centre for Sustainable Energy</div>
-            <div class="leader-expertise-title">Key Areas of Expertise</div>
-            <ul class="leader-expertise-list">
-              <li>Large-area additive manufacturing</li>
-              <li>Polymers &amp; composites</li>
-            </ul>
-            <div class="leader-back-links">
-              <a class="profile-link" href="https://www.linkedin.com/in/vidyakishore/" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-vidyakishore" target="_blank" rel="noopener">IITM Profile</a>
-            </div>
-            <p class="leader-bio">Materials scientist with R&amp;D expertise in large-scale additive manufacturing for next-generation polymers and composites. <a href="#" class="bio-toggle" data-bio-toggle="vidya-bio-card">Read full bio</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="divider"></div>
 
-  </div>
-  <div class="bio-card" id="satya-bio-card">
-    <h4>Prof. Satyanarayanan Seshadri</h4>
-    <p>Prof. Satyanarayanan Seshadri is a Professor at IIT Madras and a leading researcher in industrial energy systems and decarbonization. He heads the Energy &amp; Emissions Research Group (EnERG), focusing on developing technologies for energy efficiency, waste heat recovery, and emissions mitigation in process industries.He has extensive industry experience, having worked at GE Global Research and Forbes Marshall in energy systems and steam technologies before transitioning to academia. His research spans advanced heat recovery systems, high-temperature heat pumps, and clean heating solutions for industrial applications.He also plays a key role in national-level initiatives on energy transition, collaborating with industry bodies and policy organizations, and contributes to scaling technologies such as green hydrogen and industrial electrification in India.He earned his PhD in Aerosol Science from Texas A&amp;M University.</p>
-  </div>
-  <div class="bio-card" id="rajnish-bio-card">
-    <h4>Prof. Rajnish Kumar, FRSC</h4>
-    <p>Rajnish Kumar, FRSC is a professor in the Department Chemical Engineering at IIT Madras. He currently heads the School of Sustainability, at IIT Madras. He is also a board member of “Energy Consortium” which is a consortium of 13 industries collaborating on net-zero technologies with IIT Madras. In past, he has served as senior scientist at CSIR-NCL, Pune and research associate at National Research Council, Canada. His PhD is from The University of British Columbia, Canada, and master’s from Indian Institute of Science, Bangalore.  He has research interests in gas hydrates, carbon dioxide capture and sequestration, process development and scale-up. Rajnish is a recipient of Shanti Swarup Bhatnagar Award in Engineering Sciences (2022). Rajnish is also a recipient of NASI – Scopus Young Scientist Award in Chemistry for the year 2016. He was recognized as Highly Cited Researcher in the year 2018 (in Engineering). In 2020, Rajnish received Dr. YBG Verma Award for Excellence in Chemical Engineering Teaching.</p>
-  </div>
-  <div class="bio-card" id="vidya-bio-card">
-    <h4>Dr. Vidya Kishore</h4>
-    <p>Dr. Vidya Kishore is a materials scientist, with R&amp;D expertise in large-scale additive manufacturing (3D printing) focusing on advancing next-generation polymers and composites for applications in energy, infrastructure, and sustainable manufacturing.She brings eight years of R&amp;D experience from the US Department of Energy's Manufacturing Demonstration Facility at Oak Ridge National Laboratory (ORNL), Tennessee, where she led and contributed to pioneering initiatives in materials development for extrusion-based large-area additive manufacturing processes. Her work has involved leading interdisciplinary teams and collaborating with industry, academia, and global research consortia to translate advanced materials research into real-world applications.She was the recipient of the 2022 Young Professionals Emerging Leadership Award from SAMPE North America (Society for the Advancement of Materials and Process Engineering). She has authored over 35 publications in high-impact journals, conference proceedings, and technical reports, with more than 2,000 citations.She holds a PhD in Energy Science and Engineering from the University of Tennessee (Bredesen Center for Interdisciplinary Research &amp; Graduate Education).</p>
-  </div>
+  <!-- TEAM -->
+  <section id="team">
+    <div class="section-eyebrow reveal">Our People</div>
+    <h2 class="reveal">Led by <em>World-Class</em><br>Researchers</h2>
+    <p class="team-intro reveal">The Centre brings together some of IIT Madras's most accomplished faculty, united by a
+      shared commitment to translating research excellence into industrial impact for India's energy sector.</p>
 
-  <!-- Faculty Grid -->
-  <div class="reveal reveal-d1">
-    <div class="faculty-label">Faculty Investigators</div>
-    
-    <div class="faculty-grid">
+    <!-- Leadership: 3-column -->
+    <div class="leaders-row">
 
-      <div class="faculty-card">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/nithin.jpg" alt="Dr. Nithin Muralidharan">
-            <div class="faculty-meta">
-              <h5>Dr. Nitin Muralidharan</h5>
-              <div class="fc-area"> Assistant Professor</div>
-              <div class="fc-area">Department of Chemical Engineering, IIT Madras</div>
-              <a class="profile-link" href="https://www.linkedin.com/in/nitinmuralidharan/" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
-              </a>
-            </div>
-          </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: Battery Manufacturing, Upscaling, Solid State Batteries &amp; Battery Recycling</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://www.linkedin.com/in/nitinmuralidharan/" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Nitin+Muralidharan" target="_blank" rel="noopener">IITM Profile</a>
-                <a class="profile-link" href="https://scholar.google.com/citations?user=8riV1tIAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <div class="leader-card reveal">
+        <div class="leader-inner">
+          <div class="leader-front">
+            <div class="leader-top">
+              <img class="leader-photo" src="src/assets/profsatya.webp" alt="Dr. Satyanarayanan Seshadri">
+              <div class="leader-info">
+                <div class="leader-name">Dr. Satyanarayanan Seshadri</div>
+                <div class="leader-title">Head, Energy Consortium — IIT Madras</div>
+                <div class="leader-sub">Co-Lead, Centre for Sustainable Energy</div>
               </div>
-              <p class="faculty-bio">Professor Nitin Muralidharan is a Material Scientist and Chemical Engineer with background
-                in the area of next-generation energy storage technologies for Electric Vehicle (EV), Battery
-                Energy Storage Systems (BESS) and Electric Vertical Take-off and Lift (EVTOL)
-                applications. <a href="#" class="bio-toggle" data-bio-toggle="nithin-bio-card">Read full bio</a></p>
-            </div>  
             </div>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/Abhijit.jpg" alt="Dr. Ethayaraja Mani">
-            <div class="faculty-meta">
-              <h5>Dr. Abhijit P. Deshpande</h5>
-              <div class="fc-area">Professor</div>
-              <div class="fc-area">Department of Chemical Engineering, IIT Madras</div>
-              <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Ethayaraja+Mani" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
+            <div class="leader-links">
+              <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-satyanarayanans" target="_blank"
+                rel="noopener">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                </svg>
+                IIT Madras Profile
+              </a>
+              <a class="profile-link" href="https://www.linkedin.com/in/satyaseshadri/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 12 12" fill="currentColor">
+                  <rect x="1" y="1" width="10" height="10" rx="1" />
+                  <path fill="white"
+                    d="M3 4.5h1.5V9H3zM3.75 3a.75.75 0 100 1.5.75.75 0 000-1.5zM5.5 4.5H7v.6c.3-.5.8-.7 1.3-.7 1.4 0 1.7.9 1.7 2.1V9H8.5V6.8c0-.5 0-1.1-.7-1.1-.7 0-.8.6-.8 1.1V9H5.5V4.5z" />
+                </svg>
+                LinkedIn
               </a>
             </div>
           </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: Polymers and composites, Rheology, Ionic polymers</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://www.linkedin.com/in/abhijit-deshpande-55ba3224a/" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="profile-link" href="https://home.iitm.ac.in/abhijit/" target="_blank" rel="noopener">IITM Profile</a>
-                <a class="profile-link" href="https://scholar.google.com/citations?user=4jX1YIoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <div class="leader-back">
+            <div class="leader-back-content">
+              <div class="leader-back-role">Professor, IIT Madras</div>
+              <div class="leader-expertise-title">Key Areas of Expertise</div>
+              <ul class="leader-expertise-list">
+                <li>Waste heat recovery</li>
+                <li>Industrial decarbonization</li>
+                <li>High-temperature heat pumps</li>
+                <li>Emission monitoring (PM, NOx, SOx)</li>
+                <li>Aerosol technology</li>
+                <li>ORC systems</li>
+                <li>Process heating electrification</li>
+              </ul>
+              <div class="leader-back-links">
+                <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-satyanarayanans" target="_blank"
+                  rel="noopener">IITM Profile</a>
+                <a class="profile-link" href="https://www.linkedin.com/in/satyaseshadri/" target="_blank"
+                  rel="noopener">LinkedIn</a>
+                <a class="profile-link" href="https://energlab.org/" target="_blank" rel="noopener">EnERG Lab</a>
+                <a class="profile-link" href="https://scholar.google.com/citations?user=trCkcp4AAAAJ&amp;hl=en"
+                  target="_blank" rel="noopener">Scholar</a>
               </div>
-              <p class="faculty-bio">Prof. Abhijit P. Deshpande is a Professor in the Department of Chemical Engineering at the Indian Institute of Technology Madras (IIT Madras), Chennai. <a href="#" class="bio-toggle" data-bio-toggle="abhijit">Read full bio</a></p>
+              <p class="leader-bio">Professor at IIT Madras leading industrial energy systems and decarbonization
+                research. <a href="#" class="bio-toggle" data-bio-toggle="satya-bio-card">Read full bio</a></p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="faculty-card">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/ethiyaraj.png" alt="Dr. Ethayaraja Mani">
-            <div class="faculty-meta">
-              <h5>Dr. Ethayaraja Mani</h5>
-              <div class="fc-area">Professor</div>
-              <div class="fc-area">Department of Chemical Engineering, IIT Madras</div>
-              <div class="fc-area">Center of Excellence in Biodegradable Packaging</div>
-
-              <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Ethayaraja+Mani" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
-              </a>
-            </div>
-          </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: Biopolymers, Bioplastics, Sustainable materials, Nanoscience and Technology, Colloids and Interfacial Science, Computational Soft Matter.</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://www.linkedin.com/in/ethayaraja/" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Ethayaraja+Manihttps://www.linkedin.com/in/ethayaraja/" target="_blank" rel="noopener">IITM Profile</a>
-                <a class="profile-link" href="https://scholar.google.com/citations?user=SQK5-GwAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <div class="leader-card reveal reveal-d2">
+        <div class="leader-inner">
+          <div class="leader-front">
+            <div class="leader-top">
+              <img class="leader-photo" src="src/assets/rajinish.png" alt="Dr. Rajnish Kumar">
+              <div class="leader-info">
+                <div class="leader-name">Dr. Rajnish Kumar</div>
+                <div class="leader-title">Head, School of Sustainability — IIT Madras</div>
+                <div class="leader-sub">Co-Lead, Centre for Sustainable Energy</div>
               </div>
-              <p class="faculty-bio">Dr. Ethayaraja Mani is a distinguished academic and researcher in chemical engineering, currently serving as a Professor in the Department of Chemical Engineering at Indian Institute of Technology Madras. <a href="#" class="bio-toggle" data-bio-toggle="ethayaraja">Read full bio</a></p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/sanka.png" alt="Dr. Sankha Karmakar">
-            <div class="faculty-meta">
-              <h5>Dr. Sankha Karmakar</h5>
-              <div class="fc-area">Assistant Professor</div>
-              <div class="fc-area">Depart of Chemical Engineering, IIT Madras</div>
-              <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Sankha+Karmakar" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
+            <div class="leader-links">
+              <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Rajnish+Kumar" target="_blank"
+                rel="noopener">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                </svg>
+                IIT Madras Profile
+              </a>
+              <a class="profile-link" href="https://www.linkedin.com/in/rajnish-kumar-5632341b4/" target="_blank"
+                rel="noopener">
+                <svg viewBox="0 0 12 12" fill="currentColor">
+                  <rect x="1" y="1" width="10" height="10" rx="1" />
+                  <path fill="white"
+                    d="M3 4.5h1.5V9H3zM3.75 3a.75.75 0 100 1.5.75.75 0 000-1.5zM5.5 4.5H7v.6c.3-.5.8-.7 1.3-.7 1.4 0 1.7.9 1.7 2.1V9H8.5V6.8c0-.5 0-1.1-.7-1.1-.7 0-.8.6-.8 1.1V9H5.5V4.5z" />
+                </svg>
+                LinkedIn
               </a>
             </div>
           </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: Biopolymers, Bioplastics, Sustainable materials, Nanoscience and Technology, Colloids and Interfacial Science, Computational Soft Matter.</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://www.linkedin.com/in/ethayaraja/" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Ethayaraja+Manihttps://www.linkedin.com/in/ethayaraja/" target="_blank" rel="noopener">IITM Profile</a>
-                <a class="profile-link" href="https://scholar.google.com/citations?user=SQK5-GwAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <div class="leader-back">
+            <div class="leader-back-content">
+              <div class="leader-back-role">Professor, IIT Madras (FRSC)</div>
+              <div class="leader-expertise-title">Key Areas of Expertise</div>
+              <ul class="leader-expertise-list">
+                <li>Gas hydrates</li>
+                <li>Unconventional energy recovery</li>
+                <li>CO2 capture &amp; sequestration</li>
+                <li>Water purification &amp; desalination</li>
+                <li>Hydrothermal liquefaction</li>
+              </ul>
+              <div class="leader-back-links">
+                <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Rajnish+Kumar"
+                  target="_blank" rel="noopener">IITM Profile</a>
+                <a class="profile-link" href="https://www.linkedin.com/in/rajnish-kumar-5632341b4/" target="_blank"
+                  rel="noopener">LinkedIn</a>
+                <a class="profile-link" href="https://scholar.google.co.in/citations?user=P21tbTMAAAAJ&amp;hl=en"
+                  target="_blank" rel="noopener">Scholar</a>
               </div>
-              <p class="faculty-bio">Dr. Sankha Karmakar is an Assistant Professor in the Department of Chemical Engineering at the Indian Institute of Technology Madras <a href="#" class="bio-toggle" data-bio-toggle="sankha-bio-card">Read full bio</a></p>
+              <p class="leader-bio">Professor at IIT Madras leading sustainability, net-zero technologies, and process
+                innovation. <a href="#" class="bio-toggle" data-bio-toggle="rajnish-bio-card">Read full bio</a></p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="faculty-card">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/sankar.png" alt="Dr. C S Shankar Ram">
-            <div class="faculty-meta">
-              <h5>Dr. C S Shankar Ram</h5>
-              <div class="fc-area">Professor</div>
-              <div class="fc-area">Department of Engineering Design, IIT Madras</div>
-              <a class="profile-link" href="https://ed.iitm.ac.in/~shankarram/" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
-              </a>
-            </div>
-          </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: Vehicle Dynamics and Control, Zero Emission Trucking</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://www.linkedin.com/in/shankar-ram-coimbatore-subramanian-041523112/" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="profile-link" href="https://ed.iitm.ac.in/~shankarram/" target="_blank" rel="noopener">IITM Profile</a>
-                <a class="profile-link" href="https://scholar.google.com/citations?user=V74fqo0AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <div class="leader-card reveal reveal-d3">
+        <div class="leader-inner">
+          <div class="leader-front">
+            <div class="leader-top">
+              <img class="leader-photo" src="src/assets/vidhya.jpeg" alt="Dr. Vidya Kishore">
+              <div class="leader-info">
+                <div class="leader-name">Dr. Vidya Kishore</div>
+                <div class="leader-title">Chief Technology Officer</div>
+                <div class="leader-sub">Centre for Sustainable Energy</div>
               </div>
-              <p class="faculty-bio">C. S. Shankar Ram received his B.E. degree in Mechanical Engineering from Motilal Nehru Regional Engineering College, Allahabad, India, and M.S. and Ph.D. degrees from Texas A&amp;M University, USA. <a href="#" class="bio-toggle" data-bio-toggle="shankar-bio-card">Read full bio</a></p>
+            </div>
+            <div class="leader-links">
+              <a class="profile-link" href="https://www.linkedin.com/in/vidyakishore/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 12 12" fill="currentColor">
+                  <rect x="1" y="1" width="10" height="10" rx="1" />
+                  <path fill="white"
+                    d="M3 4.5h1.5V9H3zM3.75 3a.75.75 0 100 1.5.75.75 0 000-1.5zM5.5 4.5H7v.6c.3-.5.8-.7 1.3-.7 1.4 0 1.7.9 1.7 2.1V9H8.5V6.8c0-.5 0-1.1-.7-1.1-.7 0-.8.6-.8 1.1V9H5.5V4.5z" />
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+          <div class="leader-back">
+            <div class="leader-back-content">
+              <div class="leader-back-role">Chief Technology Officer, CIL Centre for Sustainable Energy</div>
+              <div class="leader-expertise-title">Key Areas of Expertise</div>
+              <ul class="leader-expertise-list">
+                <li>Large-area additive manufacturing</li>
+                <li>Polymers &amp; composites</li>
+              </ul>
+              <div class="leader-back-links">
+                <a class="profile-link" href="https://www.linkedin.com/in/vidyakishore/" target="_blank"
+                  rel="noopener">LinkedIn</a>
+                <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-vidyakishore" target="_blank"
+                  rel="noopener">IITM Profile</a>
+              </div>
+              <p class="leader-bio">Materials scientist with R&amp;D expertise in large-scale additive manufacturing for
+                next-generation polymers and composites. <a href="#" class="bio-toggle"
+                  data-bio-toggle="vidya-bio-card">Read full bio</a></p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="faculty-card no-flip">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/kallol.webp" alt="Dr. Kallol Roy">
-            <div class="faculty-meta">
-              <h5>Dr. Kallol Roy</h5>
-              <div class="fc-area">Adjunct Faculty</div>
-              <div class="fc-area">School of Interdisciplinary Studies,IIT Madras</div>
-              <a class="profile-link" href="" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
-              </a>
-            </div>
-          </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: (add details)</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://cms.nias.res.in/people/people/kallol-roy" target="_blank" rel="noopener">
+    </div>
+    <div class="bio-card" id="satya-bio-card">
+      <h4>Prof. Satyanarayanan Seshadri</h4>
+      <p>Prof. Satyanarayanan Seshadri is a Professor at IIT Madras and a leading researcher in industrial energy
+        systems and decarbonization. He heads the Energy &amp; Emissions Research Group (EnERG), focusing on developing
+        technologies for energy efficiency, waste heat recovery, and emissions mitigation in process industries.He has
+        extensive industry experience, having worked at GE Global Research and Forbes Marshall in energy systems and
+        steam technologies before transitioning to academia. His research spans advanced heat recovery systems,
+        high-temperature heat pumps, and clean heating solutions for industrial applications.He also plays a key role in
+        national-level initiatives on energy transition, collaborating with industry bodies and policy organizations,
+        and contributes to scaling technologies such as green hydrogen and industrial electrification in India.He earned
+        his PhD in Aerosol Science from Texas A&amp;M University.</p>
+    </div>
+    <div class="bio-card" id="rajnish-bio-card">
+      <h4>Prof. Rajnish Kumar, FRSC</h4>
+      <p>Rajnish Kumar, FRSC is a professor in the Department Chemical Engineering at IIT Madras. He currently heads the
+        School of Sustainability, at IIT Madras. He is also a board member of “Energy Consortium” which is a consortium
+        of 13 industries collaborating on net-zero technologies with IIT Madras. In past, he has served as senior
+        scientist at CSIR-NCL, Pune and research associate at National Research Council, Canada. His PhD is from The
+        University of British Columbia, Canada, and master’s from Indian Institute of Science, Bangalore. He has
+        research interests in gas hydrates, carbon dioxide capture and sequestration, process development and scale-up.
+        Rajnish is a recipient of Shanti Swarup Bhatnagar Award in Engineering Sciences (2022). Rajnish is also a
+        recipient of NASI – Scopus Young Scientist Award in Chemistry for the year 2016. He was recognized as Highly
+        Cited Researcher in the year 2018 (in Engineering). In 2020, Rajnish received Dr. YBG Verma Award for Excellence
+        in Chemical Engineering Teaching.</p>
+    </div>
+    <div class="bio-card" id="vidya-bio-card">
+      <h4>Dr. Vidya Kishore</h4>
+      <p>Dr. Vidya Kishore is a materials scientist, with R&amp;D expertise in large-scale additive manufacturing (3D
+        printing) focusing on advancing next-generation polymers and composites for applications in energy,
+        infrastructure, and sustainable manufacturing.She brings eight years of R&amp;D experience from the US
+        Department of Energy's Manufacturing Demonstration Facility at Oak Ridge National Laboratory (ORNL), Tennessee,
+        where she led and contributed to pioneering initiatives in materials development for extrusion-based large-area
+        additive manufacturing processes. Her work has involved leading interdisciplinary teams and collaborating with
+        industry, academia, and global research consortia to translate advanced materials research into real-world
+        applications.She was the recipient of the 2022 Young Professionals Emerging Leadership Award from SAMPE North
+        America (Society for the Advancement of Materials and Process Engineering). She has authored over 35
+        publications in high-impact journals, conference proceedings, and technical reports, with more than 2,000
+        citations.She holds a PhD in Energy Science and Engineering from the University of Tennessee (Bredesen Center
+        for Interdisciplinary Research &amp; Graduate Education).</p>
+    </div>
+
+    <!-- Faculty Grid -->
+    <div class="reveal reveal-d1">
+      <div class="faculty-label">Faculty Investigators</div>
+
+      <div class="faculty-grid">
+
+        <div class="faculty-card">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/nithin.jpg" alt="Dr. Nithin Muralidharan">
+              <div class="faculty-meta">
+                <h5>Dr. Nitin Muralidharan</h5>
+                <div class="fc-area"> Assistant Professor</div>
+                <div class="fc-area">Department of Chemical Engineering, IIT Madras</div>
+                <a class="profile-link" href="https://www.linkedin.com/in/nitinmuralidharan/" target="_blank"
+                  rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
                   Profile
                 </a>
               </div>
-              <p class="faculty-bio">Bio / expertise details will be added soon.</p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/swathi.png" alt="Dr. Swathi Sudhakar">
-            <div class="faculty-meta">
-              <h5>Dr. Swathi Sudhakar</h5>
-              <div class="fc-area">Assistant Professor</div>
-              <div class="fc-area">Applied Mechanics & Biomedical Engineering,IIT Madras</div>
-              <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-swathisudhakar" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
-              </a>
-            </div>
-          </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: Biomaterials, Pollutant degradation, and Toxicology analysis.</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://www.linkedin.com/search/results/all/?keywords=Swathi%20Sudhakar%20IIT%20Madras" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-swathisudhakar" target="_blank" rel="noopener">IITM Profile</a>
-                <a class="profile-link" href="https://scholar.google.com/scholar?q=Swathi+Sudhakar+IIT+Madras" target="_blank" rel="noopener">Google Scholar</a>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: Battery Manufacturing, Upscaling, Solid State
+                  Batteries &amp; Battery Recycling</div>
+                <div class="faculty-back-links">
+                  <a class="profile-link" href="https://www.linkedin.com/in/nitinmuralidharan/" target="_blank"
+                    rel="noopener">LinkedIn</a>
+                  <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Nitin+Muralidharan"
+                    target="_blank" rel="noopener">IITM Profile</a>
+                  <a class="profile-link" href="https://scholar.google.com/citations?user=8riV1tIAAAAJ&hl=en"
+                    target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <p class="faculty-bio">Professor Nitin Muralidharan is a Material Scientist and Chemical Engineer with
+                  background
+                  in the area of next-generation energy storage technologies for Electric Vehicle (EV), Battery
+                  Energy Storage Systems (BESS) and Electric Vertical Take-off and Lift (EVTOL)
+                  applications. <a href="#" class="bio-toggle" data-bio-toggle="nithin-bio-card">Read full bio</a></p>
               </div>
-              <p class="faculty-bio">Dr. Swathi Sudhakar is an Assistant Professor at IIT Madras working at the interface of nanotechnology and biology. <a href="#" class="bio-toggle" data-bio-toggle="swathi-bio-card">Read full bio</a></p>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="faculty-card">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/Tiju.jpg" alt="Dr. Tiju Thomas">
-            <div class="faculty-meta">
-              <h5>Dr. Tiju Thomas</h5>
-              <div class="fc-area">Professor</div>
-              <div class="fc-area">Materials Engineering & School of Sustainability,IIT Madras</div>
-              
-              <a class="profile-link" href="https://mme.iitm.ac.in/innerfaculty.php?fname=Tiju+Thomas" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
-              </a>
-            </div>
-          </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: Carbon materials, energy storage systems, nanotechnology for solar-water applications, electrochemical systems (supercapacitors), hydrogen production, green chemical processing, circular economy (e-waste & waste-to-value), and data-driven materials innovation.</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://www.linkedin.com/in/tiju-thomas-4826198/" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-swathisudhakar" target="_blank" rel="noopener">IITM Profile</a>
-                <a class="profile-link" href="https://scholar.google.com/scholar?q=Swathi+Sudhakar+IIT+Madras" target="_blank" rel="noopener">Google Scholar</a>
+        <div class="faculty-card">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/Abhijit.jpg" alt="Dr. Ethayaraja Mani">
+              <div class="faculty-meta">
+                <h5>Dr. Abhijit P. Deshpande</h5>
+                <div class="fc-area">Professor</div>
+                <div class="fc-area">Department of Chemical Engineering, IIT Madras</div>
+                <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Ethayaraja+Mani"
+                  target="_blank" rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
+                  Profile
+                </a>
               </div>
-              <p class="faculty-bio">Prof. Tiju Thomas is a Professor in the Department of Metallurgical and Materials Engineering at IIT Madras. <a href="#" class="bio-toggle" data-bio-toggle="tiju-bio-card">Read full bio</a></p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-inner">
-          <div class="faculty-front">
-            <img class="faculty-photo" src="src/assets/kothandaraman.jpeg" alt="Dr. Kothandaraman R">
-            <div class="faculty-meta">
-              <h5>Dr. Kothandaraman R</h5>
-              <div class="fc-area">Annamalai & Santhi Rajendren Early Career Chair Professor</div>
-              <div class="fc-area">Department of Chemistry,IIT Madras</div>
-              <a class="profile-link" href="https://chem.iitm.ac.in/faculty/kothandaraman/" target="_blank" rel="noopener">
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h10v10H1zM4 6h4M6 4v4"/></svg>
-                Profile
-              </a>
-            </div>
-          </div>
-          <div class="faculty-back">
-            <div class="faculty-back-content">
-              <div class="fc-area fc-expertise">Area of Expertise: Materials Electrochemistry: Li/Na ion battery; flow battery; electrochemical reduction of CO2 to syn gas and formic acid; electrochemical production of NH3</div>
-              <div class="faculty-back-links">
-                <a class="profile-link" href="https://www.linkedin.com/in/kothandaraman-ramanujam-8565a217/" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="profile-link" href="https://chem.iitm.ac.in/faculty/kothandaraman/" target="_blank" rel="noopener">IITM Profile</a>
-                <a class="profile-link" href="https://scholar.google.com/citations?user=8MvVXi8AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: Polymers and composites, Rheology, Ionic polymers
+                </div>
+                <div class="faculty-back-links">
+                  <a class="profile-link" href="https://www.linkedin.com/in/abhijit-deshpande-55ba3224a/"
+                    target="_blank" rel="noopener">LinkedIn</a>
+                  <a class="profile-link" href="https://home.iitm.ac.in/abhijit/" target="_blank" rel="noopener">IITM
+                    Profile</a>
+                  <a class="profile-link" href="https://scholar.google.com/citations?user=4jX1YIoAAAAJ&hl=en"
+                    target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <p class="faculty-bio">Prof. Abhijit P. Deshpande is a Professor in the Department of Chemical
+                  Engineering at the Indian Institute of Technology Madras (IIT Madras), Chennai. <a href="#"
+                    class="bio-toggle" data-bio-toggle="abhijit">Read full bio</a></p>
               </div>
-              <p class="faculty-bio">Dr. Kothandaraman Ramanujam is a Professor in the Department of Chemistry at the Indian Institute of Technology Madras (IIT Madras), Chennai. <a href="#" class="bio-toggle" data-bio-toggle="kothandaraman">Read full bio</a></p>
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
-    <div class="bio-card" id="nithin-bio-card">
-      <h4>Dr. Nithin Muralidharan </h4>
-      <p>Professor Nitin Muralidharan is a Material Scientist and Chemical Engineer with background in the area of next-generation energy storage technologies for Electric Vehicle (EV), Battery Energy Storage Systems (BESS) and Electric Vertical Take-off and Lift (EVTOL) applications. He also serves as the Associate Editor of Elsevier's Journal of Power Sources (IF: 7.9), a prestigious and historic journal in the area of energy storage. His research expertise encompasses key directions into Li, Na ion and metal batteries, solid state batteries and next-gen electrochemical energy storage systems. He is the recipient of notable awards in the battery R&D space and has also received two R&D 100 awards also termed as the Oscars of Innovation, in 2020 and 2022 for inventions such as novel cathode material for co-free batteries and SOLIDPAC. Prior to joining IITM, Dr. Nitin Muralidharan was a Staff Scientist at United States Department of Energy's (US. DOE) Oak Ridge National Laboratory (ORNL) managing a broad portfolio of R&D in Battery Manufacturing, New Energy Storage Material Development, Solid State Batteries and Battery Recycling. He was also a Post-doctoral Research Associate at ORNL at the US. DOE's Battery Manufacturing Facility (BMF). He was also the finalist for the prestigious globally competitive Weinberg Distinguished Staff Fellowship at ORNL in 2018. He is one of the pioneers of the field of mechano-electrochemistry with several foundational publications in this area. He received his Doctoral Degree in Interdisciplinary Materials Science from Vanderbilt University in Nashville, Tennessee, USA. Prof. Nitin joined Indian Institute of Technology Madras (IITM), Department of Chemical Engineering in April 2023 is currently leads the EMERGE Research Group aimed at developing material driven solutions to combat the challenges pertaining to the climate-water-energy nexus.</p>
-    </div>
-    <div class="bio-card" id="abhijit">
-      <h4>Dr. Abhijit P. Deshpande </h4>
-      <p>Prof. Abhijit P. Deshpande is a Professor in the Department of Chemical Engineering at the Indian Institute of Technology Madras (IIT Madras), Chennai. He earned his Ph.D. from the University of Washington and has been with IIT Madras since 1996. His research focuses on polymers, rheology, ionic polymers, and soft matter systems. He has contributed extensively to academia with over 100 publications, multiple patents, and supervision of numerous postgraduate and doctoral students. His work also spans industrial collaborations and funded research projects in advanced materials and polymer engineering.</p>
-    </div>
-    <div class="bio-card" id="ethayaraja">
-      <h4>Dr. Ethayaraja Mani </h4>
-      <p>Prof. Ethayaraja Mani is a distinguished academic and researcher in chemical engineering, currently serving as a Professor in the Department of Chemical Engineering at Indian Institute of Technology Madras, where he is also associated with interdisciplinary initiatives such as the School of Sustainability. He completed his B.Tech. in Chemical Engineering in 2003 and went on to earn his Ph.D. in the same field, with research in colloids and interface science that received notable recognition. Following postdoctoral work at Utrecht University and University of Amsterdam, he joined IIT Madras in 2011 as an Assistant Professor and has since risen to the rank of Professor. His research lies at the intersection of soft matter physics, chemical engineering, and materials science, with key contributions in molecular simulations, colloidal self-assembly, active matter, interfacial engineering, biomaterials, polymer systems, and environmental challenges such as micro- and nanoplastics degradation. He leads efforts in polymer engineering and colloid science, focusing on designing advanced materials like patchy colloids, nanoparticle systems, and protein assemblies with applications in drug delivery, sustainable packaging, and nanotechnology. Prof. Mani has published extensively in leading international journals and has received several prestigious honors, including the Shah–Schulman Award for best Ph.D. thesis in colloid and interface science, the Young Faculty Recognition Award at IIT Madras, and the Amar Dye Chem Award for excellence in research and development. In addition to his academic work, he contributes to translational research and innovation in sustainable materials and is actively involved in initiatives that bridge science and entrepreneurship, making him a prominent figure in advancing interdisciplinary research and sustainable technologies in chemical engineering.</p>
-    </div>
-    <div class="bio-card" id="sankha-bio-card">
-      <h4>Dr. Sankha Karmakar </h4>
-      <p>Dr. Sankha Karmakar is an Assistant Professor in the Department of Chemical Engineering at the Indian Institute of Technology Madras. Prior to joining IIT Madras, he served as an Assistant Professor at the ICT-IOC Bhubaneswar and National Institute of Technology Durgapur. He obtained his Ph.D. (2019) and M.Tech. (2013) in Chemical Engineering from the Indian Institute of Technology Kharagpur, and completed his B.E. from Jadavpur University. His research focuses on advanced materials for water and wastewater treatment, with particular emphasis on Metal–Organic Frameworks (MOFs), membrane technologies, and their integration into mixed matrix systems. His expertise also extends to waste valorization and the development of sustainable resource recovery strategies, along with work on enhancing the shelf life of highly perishable fruit juices. Dr. Karmakar has authored over 24 publications in reputed international journals, along with one book chapter and four patents. He is a recipient of the prestigious DST-Lockheed Martin India Innovation Growth Programme Award for his contributions to fluoride mitigation. He currently serves on the Early Career Editorial Board of the Journal of Water Process Engineering.
+        <div class="faculty-card">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/ethiyaraj.png" alt="Dr. Ethayaraja Mani">
+              <div class="faculty-meta">
+                <h5>Dr. Ethayaraja Mani</h5>
+                <div class="fc-area">Professor</div>
+                <div class="fc-area">Department of Chemical Engineering, IIT Madras</div>
+                <div class="fc-area">Center of Excellence in Biodegradable Packaging</div>
+
+                <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Ethayaraja+Mani"
+                  target="_blank" rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
+                  Profile
+                </a>
+              </div>
+            </div>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: Biopolymers, Bioplastics, Sustainable materials,
+                  Nanoscience and Technology, Colloids and Interfacial Science, Computational Soft Matter.</div>
+                <div class="faculty-back-links">
+                  <a class="profile-link" href="https://www.linkedin.com/in/ethayaraja/" target="_blank"
+                    rel="noopener">LinkedIn</a>
+                  <a class="profile-link"
+                    href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Ethayaraja+Manihttps://www.linkedin.com/in/ethayaraja/"
+                    target="_blank" rel="noopener">IITM Profile</a>
+                  <a class="profile-link" href="https://scholar.google.com/citations?user=SQK5-GwAAAAJ&hl=en"
+                    target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <p class="faculty-bio">Dr. Ethayaraja Mani is a distinguished academic and researcher in chemical
+                  engineering, currently serving as a Professor in the Department of Chemical Engineering at Indian
+                  Institute of Technology Madras. <a href="#" class="bio-toggle" data-bio-toggle="ethayaraja">Read full
+                    bio</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faculty-card">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/sanka.png" alt="Dr. Sankha Karmakar">
+              <div class="faculty-meta">
+                <h5>Dr. Sankha Karmakar</h5>
+                <div class="fc-area">Assistant Professor</div>
+                <div class="fc-area">Depart of Chemical Engineering, IIT Madras</div>
+                <a class="profile-link" href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Sankha+Karmakar"
+                  target="_blank" rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
+                  Profile
+                </a>
+              </div>
+            </div>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: Biopolymers, Bioplastics, Sustainable materials,
+                  Nanoscience and Technology, Colloids and Interfacial Science, Computational Soft Matter.</div>
+                <div class="faculty-back-links">
+                  <a class="profile-link" href="https://www.linkedin.com/in/ethayaraja/" target="_blank"
+                    rel="noopener">LinkedIn</a>
+                  <a class="profile-link"
+                    href="https://che.iitm.ac.in/faculty.php?fname=Dr.+Ethayaraja+Manihttps://www.linkedin.com/in/ethayaraja/"
+                    target="_blank" rel="noopener">IITM Profile</a>
+                  <a class="profile-link" href="https://scholar.google.com/citations?user=SQK5-GwAAAAJ&hl=en"
+                    target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <p class="faculty-bio">Dr. Sankha Karmakar is an Assistant Professor in the Department of Chemical
+                  Engineering at the Indian Institute of Technology Madras <a href="#" class="bio-toggle"
+                    data-bio-toggle="sankha-bio-card">Read full bio</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faculty-card">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/sankar.png" alt="Dr. C S Shankar Ram">
+              <div class="faculty-meta">
+                <h5>Dr. C S Shankar Ram</h5>
+                <div class="fc-area">Professor</div>
+                <div class="fc-area">Department of Engineering Design, IIT Madras</div>
+                <a class="profile-link" href="https://ed.iitm.ac.in/~shankarram/" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
+                  Profile
+                </a>
+              </div>
+            </div>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: Vehicle Dynamics and Control, Zero Emission
+                  Trucking</div>
+                <div class="faculty-back-links">
+                  <a class="profile-link"
+                    href="https://www.linkedin.com/in/shankar-ram-coimbatore-subramanian-041523112/" target="_blank"
+                    rel="noopener">LinkedIn</a>
+                  <a class="profile-link" href="https://ed.iitm.ac.in/~shankarram/" target="_blank" rel="noopener">IITM
+                    Profile</a>
+                  <a class="profile-link" href="https://scholar.google.com/citations?user=V74fqo0AAAAJ&hl=en"
+                    target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <p class="faculty-bio">C. S. Shankar Ram received his B.E. degree in Mechanical Engineering from Motilal
+                  Nehru Regional Engineering College, Allahabad, India, and M.S. and Ph.D. degrees from Texas A&amp;M
+                  University, USA. <a href="#" class="bio-toggle" data-bio-toggle="shankar-bio-card">Read full bio</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faculty-card no-flip">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/kallol.webp" alt="Dr. Kallol Roy">
+              <div class="faculty-meta">
+                <h5>Dr. Kallol Roy</h5>
+                <div class="fc-area">Adjunct Faculty</div>
+                <div class="fc-area">School of Interdisciplinary Studies,IIT Madras</div>
+                <a class="profile-link" href="" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
+                  Profile
+                </a>
+              </div>
+            </div>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: (add details)</div>
+                <div class="faculty-back-links">
+                  <a class="profile-link" href="https://cms.nias.res.in/people/people/kallol-roy" target="_blank"
+                    rel="noopener">
+                    Profile
+                  </a>
+                </div>
+                <p class="faculty-bio">Bio / expertise details will be added soon.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faculty-card">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/swathi.png" alt="Dr. Swathi Sudhakar">
+              <div class="faculty-meta">
+                <h5>Dr. Swathi Sudhakar</h5>
+                <div class="fc-area">Assistant Professor</div>
+                <div class="fc-area">Applied Mechanics & Biomedical Engineering,IIT Madras</div>
+                <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-swathisudhakar" target="_blank"
+                  rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
+                  Profile
+                </a>
+              </div>
+            </div>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: Biomaterials, Pollutant degradation, and Toxicology
+                  analysis.</div>
+                <div class="faculty-back-links">
+                  <a class="profile-link"
+                    href="https://www.linkedin.com/search/results/all/?keywords=Swathi%20Sudhakar%20IIT%20Madras"
+                    target="_blank" rel="noopener">LinkedIn</a>
+                  <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-swathisudhakar" target="_blank"
+                    rel="noopener">IITM Profile</a>
+                  <a class="profile-link" href="https://scholar.google.com/scholar?q=Swathi+Sudhakar+IIT+Madras"
+                    target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <p class="faculty-bio">Dr. Swathi Sudhakar is an Assistant Professor at IIT Madras working at the
+                  interface of nanotechnology and biology. <a href="#" class="bio-toggle"
+                    data-bio-toggle="swathi-bio-card">Read full bio</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faculty-card">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/Tiju.jpg" alt="Dr. Tiju Thomas">
+              <div class="faculty-meta">
+                <h5>Dr. Tiju Thomas</h5>
+                <div class="fc-area">Professor</div>
+                <div class="fc-area">Materials Engineering & School of Sustainability,IIT Madras</div>
+
+                <a class="profile-link" href="https://mme.iitm.ac.in/innerfaculty.php?fname=Tiju+Thomas" target="_blank"
+                  rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
+                  Profile
+                </a>
+              </div>
+            </div>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: Carbon materials, energy storage systems,
+                  nanotechnology for solar-water applications, electrochemical systems (supercapacitors), hydrogen
+                  production, green chemical processing, circular economy (e-waste & waste-to-value), and data-driven
+                  materials innovation.</div>
+                <div class="faculty-back-links">
+                  <a class="profile-link" href="https://www.linkedin.com/in/tiju-thomas-4826198/" target="_blank"
+                    rel="noopener">LinkedIn</a>
+                  <a class="profile-link" href="https://apm.iitm.ac.in/pages/profile-swathisudhakar" target="_blank"
+                    rel="noopener">IITM Profile</a>
+                  <a class="profile-link" href="https://scholar.google.com/scholar?q=Swathi+Sudhakar+IIT+Madras"
+                    target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <p class="faculty-bio">Prof. Tiju Thomas is a Professor in the Department of Metallurgical and Materials
+                  Engineering at IIT Madras. <a href="#" class="bio-toggle" data-bio-toggle="tiju-bio-card">Read full
+                    bio</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faculty-card">
+          <div class="faculty-inner">
+            <div class="faculty-front">
+              <img class="faculty-photo" src="src/assets/kothandaraman.jpeg" alt="Dr. Kothandaraman R">
+              <div class="faculty-meta">
+                <h5>Dr. Kothandaraman R</h5>
+                <div class="fc-area">Annamalai & Santhi Rajendren Early Career Chair Professor</div>
+                <div class="fc-area">Department of Chemistry,IIT Madras</div>
+                <a class="profile-link" href="https://chem.iitm.ac.in/faculty/kothandaraman/" target="_blank"
+                  rel="noopener">
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M1 1h10v10H1zM4 6h4M6 4v4" />
+                  </svg>
+                  Profile
+                </a>
+              </div>
+            </div>
+            <div class="faculty-back">
+              <div class="faculty-back-content">
+                <div class="fc-area fc-expertise">Area of Expertise: Materials Electrochemistry: Li/Na ion battery; flow
+                  battery; electrochemical reduction of CO2 to syn gas and formic acid; electrochemical production of
+                  NH3</div>
+                <div class="faculty-back-links">
+                  <a class="profile-link" href="https://www.linkedin.com/in/kothandaraman-ramanujam-8565a217/"
+                    target="_blank" rel="noopener">LinkedIn</a>
+                  <a class="profile-link" href="https://chem.iitm.ac.in/faculty/kothandaraman/" target="_blank"
+                    rel="noopener">IITM Profile</a>
+                  <a class="profile-link" href="https://scholar.google.com/citations?user=8MvVXi8AAAAJ&hl=en"
+                    target="_blank" rel="noopener">Google Scholar</a>
+                </div>
+                <p class="faculty-bio">Dr. Kothandaraman Ramanujam is a Professor in the Department of Chemistry at the
+                  Indian Institute of Technology Madras (IIT Madras), Chennai. <a href="#" class="bio-toggle"
+                    data-bio-toggle="kothandaraman">Read full bio</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="bio-card" id="nithin-bio-card">
+        <h4>Dr. Nithin Muralidharan </h4>
+        <p>Professor Nitin Muralidharan is a Material Scientist and Chemical Engineer with background in the area of
+          next-generation energy storage technologies for Electric Vehicle (EV), Battery Energy Storage Systems (BESS)
+          and Electric Vertical Take-off and Lift (EVTOL) applications. He also serves as the Associate Editor of
+          Elsevier's Journal of Power Sources (IF: 7.9), a prestigious and historic journal in the area of energy
+          storage. His research expertise encompasses key directions into Li, Na ion and metal batteries, solid state
+          batteries and next-gen electrochemical energy storage systems. He is the recipient of notable awards in the
+          battery R&D space and has also received two R&D 100 awards also termed as the Oscars of Innovation, in 2020
+          and 2022 for inventions such as novel cathode material for co-free batteries and SOLIDPAC. Prior to joining
+          IITM, Dr. Nitin Muralidharan was a Staff Scientist at United States Department of Energy's (US. DOE) Oak Ridge
+          National Laboratory (ORNL) managing a broad portfolio of R&D in Battery Manufacturing, New Energy Storage
+          Material Development, Solid State Batteries and Battery Recycling. He was also a Post-doctoral Research
+          Associate at ORNL at the US. DOE's Battery Manufacturing Facility (BMF). He was also the finalist for the
+          prestigious globally competitive Weinberg Distinguished Staff Fellowship at ORNL in 2018. He is one of the
+          pioneers of the field of mechano-electrochemistry with several foundational publications in this area. He
+          received his Doctoral Degree in Interdisciplinary Materials Science from Vanderbilt University in Nashville,
+          Tennessee, USA. Prof. Nitin joined Indian Institute of Technology Madras (IITM), Department of Chemical
+          Engineering in April 2023 is currently leads the EMERGE Research Group aimed at developing material driven
+          solutions to combat the challenges pertaining to the climate-water-energy nexus.</p>
+      </div>
+      <div class="bio-card" id="abhijit">
+        <h4>Dr. Abhijit P. Deshpande </h4>
+        <p>Prof. Abhijit P. Deshpande is a Professor in the Department of Chemical Engineering at the Indian Institute
+          of Technology Madras (IIT Madras), Chennai. He earned his Ph.D. from the University of Washington and has been
+          with IIT Madras since 1996. His research focuses on polymers, rheology, ionic polymers, and soft matter
+          systems. He has contributed extensively to academia with over 100 publications, multiple patents, and
+          supervision of numerous postgraduate and doctoral students. His work also spans industrial collaborations and
+          funded research projects in advanced materials and polymer engineering.</p>
+      </div>
+      <div class="bio-card" id="ethayaraja">
+        <h4>Dr. Ethayaraja Mani </h4>
+        <p>Prof. Ethayaraja Mani is a distinguished academic and researcher in chemical engineering, currently serving
+          as a Professor in the Department of Chemical Engineering at Indian Institute of Technology Madras, where he is
+          also associated with interdisciplinary initiatives such as the School of Sustainability. He completed his
+          B.Tech. in Chemical Engineering in 2003 and went on to earn his Ph.D. in the same field, with research in
+          colloids and interface science that received notable recognition. Following postdoctoral work at Utrecht
+          University and University of Amsterdam, he joined IIT Madras in 2011 as an Assistant Professor and has since
+          risen to the rank of Professor. His research lies at the intersection of soft matter physics, chemical
+          engineering, and materials science, with key contributions in molecular simulations, colloidal self-assembly,
+          active matter, interfacial engineering, biomaterials, polymer systems, and environmental challenges such as
+          micro- and nanoplastics degradation. He leads efforts in polymer engineering and colloid science, focusing on
+          designing advanced materials like patchy colloids, nanoparticle systems, and protein assemblies with
+          applications in drug delivery, sustainable packaging, and nanotechnology. Prof. Mani has published extensively
+          in leading international journals and has received several prestigious honors, including the Shah–Schulman
+          Award for best Ph.D. thesis in colloid and interface science, the Young Faculty Recognition Award at IIT
+          Madras, and the Amar Dye Chem Award for excellence in research and development. In addition to his academic
+          work, he contributes to translational research and innovation in sustainable materials and is actively
+          involved in initiatives that bridge science and entrepreneurship, making him a prominent figure in advancing
+          interdisciplinary research and sustainable technologies in chemical engineering.</p>
+      </div>
+      <div class="bio-card" id="sankha-bio-card">
+        <h4>Dr. Sankha Karmakar </h4>
+        <p>Dr. Sankha Karmakar is an Assistant Professor in the Department of Chemical Engineering at the Indian
+          Institute of Technology Madras. Prior to joining IIT Madras, he served as an Assistant Professor at the
+          ICT-IOC Bhubaneswar and National Institute of Technology Durgapur. He obtained his Ph.D. (2019) and M.Tech.
+          (2013) in Chemical Engineering from the Indian Institute of Technology Kharagpur, and completed his B.E. from
+          Jadavpur University. His research focuses on advanced materials for water and wastewater treatment, with
+          particular emphasis on Metal–Organic Frameworks (MOFs), membrane technologies, and their integration into
+          mixed matrix systems. His expertise also extends to waste valorization and the development of sustainable
+          resource recovery strategies, along with work on enhancing the shelf life of highly perishable fruit juices.
+          Dr. Karmakar has authored over 24 publications in reputed international journals, along with one book chapter
+          and four patents. He is a recipient of the prestigious DST-Lockheed Martin India Innovation Growth Programme
+          Award for his contributions to fluoride mitigation. He currently serves on the Early Career Editorial Board of
+          the Journal of Water Process Engineering.
         </p>
-    </div>
-    <div class="bio-card" id="shankar-bio-card">
-      <h4>Dr. C S Shankar Ram </h4>
-      <p>C. S. Shankar Ram received his B.E. degree in Mechanical Engineering from Motilal Nehru Regional Engineering College, Allahabad, India, and M.S. and Ph.D. degrees from Texas A&M University, USA. He is currently a Professor with the Department of Engineering Design, IIT Madras, Chennai, India. He joined the department in the year 2006 when it was started and contributed to establishing the Automotive Engineering program. He is currently coordinating various E-Mobility initiatives at IIT Madras. He pursues research in the broad area of Vehicle Dynamics and Control with specific focus on Active Vehicle Safety. His academic contributions have been recognized with the Srimathi Marti Annapurna Gurunath Award for Excellence in Teaching and the Young Faculty Recognition Award at IIT Madras, and the Young Engineer Award from the Indian National Academy of Engineering. He has been elected as a Fellow of the American Society of Mechanical Engineers (ASME) in 2024.
-      </p>
-    </div>
-    <div class="bio-card" id="swathi-bio-card">
-      <h4>Dr. Swathi Sudhakar </h4>
-      <p>Dr. Swathi Sudhakar is an Assistant Professor in the Department of Applied Mechanics and Biomedical Engineering at the Indian Institute of Technology Madras. She completed her PhD in Biology from Eberhard Karls University in Tuebingen, Germany, and did her postdoc at Imperial College London. She was a gold medalist in her Bachelor's and Master's studies and received summa cum laude during her PhD. She also received the Reinhold und Maria Teufel-Stiftung Doctoral Award for an outstanding dissertation in Baden-Wurttemberg, Germany. Her research focuses on the interface of nanotechnology and biology, particularly on biomaterials, nanotherapeutics, space medicine, and single-molecule biophysics. She has received numerous awards and has published extensively in peer-reviewed journals, including Science and npj microgravity. Dr. Sudhakar is actively involved in several funded research projects to address key challenges in fundamental healthcare and biotechnology at national and international levels. She has also filed more than 20 patents so far, and 9 of them have been granted.</p>
-    </div>
-    <div class="bio-card" id="tiju-bio-card">
-      <h4>Dr. Tiju Thomas </h4>
-      <p>Prof. Tiju Thomas is a Professor in the Department of Metallurgical and Materials Engineering at IIT Madras, with a research focus at the intersection of materials science, sustainability, and energy systems. His work centers on the design and understanding of nanomaterials (including carbon-based materials) and their role in next-generation energy technologies, including electrochemical systems and carbon utilization pathways. He brings a combination of academic insight and industry-relevant perspective, with particular interest in translating fundamental materials science into scalable solutions for energy and environmental challenges. His research spans microstructure–property relationships in functional nanomaterials, advanced processing, and emerging data-driven approaches for materials discovery.
-        Within the context of sustainable energy, his work is especially relevant to carbon-rich systems, ranging from optimizing carbon materials for energy storage to exploring pathways for value-added utilization of carbon resources, and industrial by-products or waste. He plays an active role in guiding interdisciplinary efforts that connect materials research with energy infrastructure, industrial ecosystems, and long-term sustainability goals. He is also actively engaged in mentoring students and fostering interdisciplinary collaborations that connect materials science with real-world energy and sustainability needs.
+      </div>
+      <div class="bio-card" id="shankar-bio-card">
+        <h4>Dr. C S Shankar Ram </h4>
+        <p>C. S. Shankar Ram received his B.E. degree in Mechanical Engineering from Motilal Nehru Regional Engineering
+          College, Allahabad, India, and M.S. and Ph.D. degrees from Texas A&M University, USA. He is currently a
+          Professor with the Department of Engineering Design, IIT Madras, Chennai, India. He joined the department in
+          the year 2006 when it was started and contributed to establishing the Automotive Engineering program. He is
+          currently coordinating various E-Mobility initiatives at IIT Madras. He pursues research in the broad area of
+          Vehicle Dynamics and Control with specific focus on Active Vehicle Safety. His academic contributions have
+          been recognized with the Srimathi Marti Annapurna Gurunath Award for Excellence in Teaching and the Young
+          Faculty Recognition Award at IIT Madras, and the Young Engineer Award from the Indian National Academy of
+          Engineering. He has been elected as a Fellow of the American Society of Mechanical Engineers (ASME) in 2024.
         </p>
-    </div>
-    <div class="bio-card" id="kothandaraman">
-      <h4>Dr. Kothandaraman R </h4>
-      <p>Dr. Kothandaraman Ramanujam is a Professor in the Department of Chemistry at the Indian Institute of Technology Madras (IIT Madras), Chennai. He is a materials electrochemist specializing in redox chemistries for flow batteries, alkali-metal ion batteries, and electrochemical CO₂/N₂ reduction. With over a decade of academic and research experience, he has published more than 180 research articles and holds 20+ patents. His work focuses on translating laboratory research into real-world energy storage technologies, including kW-scale flow battery systems in collaboration with industry. He has also secured significant international research funding and actively contributes to global scientific networks and leadership in electrochemistry.</p>
-    </div>
-    
-    <div class="team-subsection">
-      <div class="faculty-label">Research Team</div>
-      <div class="simple-people-grid">
-        <div class="simple-person-card">
-          <div class="simple-person-inner">
-            <div class="simple-person-front">
-              <div class="simple-person-top">
-                <img class="simple-person-photo" src="src/assets/shubam.jpg" alt="Team Member 01">
-                <div>
-                  <div class="simple-person-name">Shubham Jaiswal</div>
-                  <div class="simple-person-role">Post-doctoral fellow</div>
-                  <a class="profile-link" href="https://www.linkedin.com/in/shubhamjaiswal626/?skipRedirect=true" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="bio-card" id="swathi-bio-card">
+        <h4>Dr. Swathi Sudhakar </h4>
+        <p>Dr. Swathi Sudhakar is an Assistant Professor in the Department of Applied Mechanics and Biomedical
+          Engineering at the Indian Institute of Technology Madras. She completed her PhD in Biology from Eberhard Karls
+          University in Tuebingen, Germany, and did her postdoc at Imperial College London. She was a gold medalist in
+          her Bachelor's and Master's studies and received summa cum laude during her PhD. She also received the
+          Reinhold und Maria Teufel-Stiftung Doctoral Award for an outstanding dissertation in Baden-Wurttemberg,
+          Germany. Her research focuses on the interface of nanotechnology and biology, particularly on biomaterials,
+          nanotherapeutics, space medicine, and single-molecule biophysics. She has received numerous awards and has
+          published extensively in peer-reviewed journals, including Science and npj microgravity. Dr. Sudhakar is
+          actively involved in several funded research projects to address key challenges in fundamental healthcare and
+          biotechnology at national and international levels. She has also filed more than 20 patents so far, and 9 of
+          them have been granted.</p>
+      </div>
+      <div class="bio-card" id="tiju-bio-card">
+        <h4>Dr. Tiju Thomas </h4>
+        <p>Prof. Tiju Thomas is a Professor in the Department of Metallurgical and Materials Engineering at IIT Madras,
+          with a research focus at the intersection of materials science, sustainability, and energy systems. His work
+          centers on the design and understanding of nanomaterials (including carbon-based materials) and their role in
+          next-generation energy technologies, including electrochemical systems and carbon utilization pathways. He
+          brings a combination of academic insight and industry-relevant perspective, with particular interest in
+          translating fundamental materials science into scalable solutions for energy and environmental challenges. His
+          research spans microstructure–property relationships in functional nanomaterials, advanced processing, and
+          emerging data-driven approaches for materials discovery.
+          Within the context of sustainable energy, his work is especially relevant to carbon-rich systems, ranging from
+          optimizing carbon materials for energy storage to exploring pathways for value-added utilization of carbon
+          resources, and industrial by-products or waste. He plays an active role in guiding interdisciplinary efforts
+          that connect materials research with energy infrastructure, industrial ecosystems, and long-term
+          sustainability goals. He is also actively engaged in mentoring students and fostering interdisciplinary
+          collaborations that connect materials science with real-world energy and sustainability needs.
+        </p>
+      </div>
+      <div class="bio-card" id="kothandaraman">
+        <h4>Dr. Kothandaraman R </h4>
+        <p>Dr. Kothandaraman Ramanujam is a Professor in the Department of Chemistry at the Indian Institute of
+          Technology Madras (IIT Madras), Chennai. He is a materials electrochemist specializing in redox chemistries
+          for flow batteries, alkali-metal ion batteries, and electrochemical CO₂/N₂ reduction. With over a decade of
+          academic and research experience, he has published more than 180 research articles and holds 20+ patents. His
+          work focuses on translating laboratory research into real-world energy storage technologies, including
+          kW-scale flow battery systems in collaboration with industry. He has also secured significant international
+          research funding and actively contributes to global scientific networks and leadership in electrochemistry.
+        </p>
+      </div>
+
+      <div class="team-subsection">
+        <div class="faculty-label">Research Team</div>
+        <div class="simple-people-grid">
+          <div class="simple-person-card">
+            <div class="simple-person-inner">
+              <div class="simple-person-front">
+                <div class="simple-person-top">
+                  <img class="simple-person-photo" src="src/assets/shubam.jpg" alt="Team Member 01">
+                  <div>
+                    <div class="simple-person-name">Shubham Jaiswal</div>
+                    <div class="simple-person-role">Post-doctoral fellow</div>
+                    <a class="profile-link" href="https://www.linkedin.com/in/shubhamjaiswal626/?skipRedirect=true"
+                      target="_blank" rel="noopener">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+              <div class="simple-person-back">
+                <div class="simple-person-back-content">
+                  <div class="simple-person-expertise">Research Areas: Coal-based polymer composites, carbon-based
+                    materials, 2D materials,
+                    polymer processing, and value-added utilization of coal-derived materials</div>
+                  <div class="simple-person-back-links">
+                    <a class="profile-link" href="https://www.linkedin.com/in/shubhamjaiswal626/?skipRedirect=true"
+                      target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="profile-link" href="" target="_blank" rel="noopener">Google Scholor</a>
+                  </div>
+                  <!-- <div class="simple-person-back-text">Supports project execution, data analysis, and lab-to-field validation activities.</div> -->
                 </div>
               </div>
             </div>
-            <div class="simple-person-back">
-              <div class="simple-person-back-content">
-                <div class="simple-person-expertise">Research Areas: Coal-based polymer composites, carbon-based materials, 2D materials,
-                  polymer processing, and value-added utilization of coal-derived materials</div>
-                <div class="simple-person-back-links">
-                  <a class="profile-link" href="https://www.linkedin.com/in/shubhamjaiswal626/?skipRedirect=true" target="_blank" rel="noopener">LinkedIn</a>
-                  <a class="profile-link" href="" target="_blank" rel="noopener">Google Scholor</a>
+          </div>
+          <div class="simple-person-card">
+            <div class="simple-person-inner">
+              <div class="simple-person-front">
+                <div class="simple-person-top">
+                  <img class="simple-person-photo" src="src/assets/indhumathi.png" alt="Team Member 02">
+                  <div>
+                    <div class="simple-person-name">Indhumathi I</div>
+                    <div class="simple-person-role">Research Associate Scientist</div>
+                    <a class="profile-link" href=": www.linkedin.com/in/indumathi-ilango-9415b1aa" target="_blank"
+                      rel="noopener">LinkedIn</a>
+                  </div>
                 </div>
-                <!-- <div class="simple-person-back-text">Supports project execution, data analysis, and lab-to-field validation activities.</div> -->
+              </div>
+              <div class="simple-person-back">
+                <div class="simple-person-back-content">
+                  <div class="simple-person-expertise">Research Areas: Wastewater Treatment, Photocatalyst, Adsorption,
+                    Nanotechnology and
+                    Nanomaterial Characterization, Metal Extraction using Deep Eutectic Solvents (DES) and
+                    Covalent Organic Framework (COF).</div>
+                  <div class="simple-person-back-links">
+                    <a class="profile-link" href="www.linkedin.com/in/indumathi-ilango-9415b1aa" target="_blank"
+                      rel="noopener">LinkedIn</a>
+                    <a class="profile-link" href="https://scholar.google.com/citations?user=yzj4VcMAAAAJ&amp;hl=en"
+                      target="_blank" rel="noopener">Google Scholor</a>
+                  </div>
+                  <!-- <div class="simple-person-back-text">Leads experimental planning and technical integration across research themes.</div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="simple-person-card">
+            <div class="simple-person-inner">
+              <div class="simple-person-front">
+                <div class="simple-person-top">
+                  <img class="simple-person-photo" src="src/assets/ravisankar.png" alt="Team Member 02">
+                  <div>
+                    <div class="simple-person-name">Dr. Ravi Shankar</div>
+                    <div class="simple-person-role">Research Associate Scientist</div>
+                    <a class="profile-link" href=": www.linkedin.com/in/indumathi-ilango-9415b1aa" target="_blank"
+                      rel="noopener">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+              <div class="simple-person-back">
+                <div class="simple-person-back-content">
+                  <div class="simple-person-expertise">Research Areas: Circular economy, sustainable energy, porous
+                    nanomaterials, photocatalysis, CO 2 capture and conversion, reactor
+                    and process design</div>
+                  <div class="simple-person-back-links">
+                    <a class="profile-link" href="https://www.linkedin.com/in/dr-ravi-b-shankar/" target="_blank"
+                      rel="noopener">LinkedIn</a>
+                    <!-- <a class="profile-link" href="https://scholar.google.com/citations?user=yzj4VcMAAAAJ&amp;hl=en"
+                      target="_blank" rel="noopener">Google Scholor</a> -->
+                  </div>
+                  <!-- <div class="simple-person-back-text">Leads experimental planning and technical integration across research themes.</div> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="simple-person-card">
-          <div class="simple-person-inner">
-            <div class="simple-person-front">
-              <div class="simple-person-top">
-                <img class="simple-person-photo" src="src/assets/indhumathi.png" alt="Team Member 02">
-                <div>
-                  <div class="simple-person-name">Indhumathi I</div>
-                  <div class="simple-person-role">Research Associate Scientist</div>
-                  <a class="profile-link" href=": www.linkedin.com/in/indumathi-ilango-9415b1aa" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="team-subsection">
+        <div class="faculty-label">Coal India Limited Collaborators</div>
+        <div class="simple-people-grid">
+          <div class="simple-person-card no-flip">
+            <div class="simple-person-inner">
+              <div class="simple-person-front">
+                <div class="simple-person-top">
+                  <img class="simple-person-photo" src="src/assets//sudip.jpg" alt="Sudip Maiti">
+                  <div>
+                    <div class="simple-person-name">Sudip Maiti</div>
+                    <div class="simple-person-role">General Manager (CP &amp; PM)</div>
+                    <a class="profile-link" href="https://www.linkedin.com/in/sudip-maiti-612a0812/" target="_blank"
+                      rel="noopener">LinkedIn</a>
+                  </div>
                 </div>
               </div>
+              <div class="simple-person-back">
+                <div class="simple-person-back-text">Coordinates deployment priorities and translates operational needs
+                  into projects.</div>
+              </div>
             </div>
-            <div class="simple-person-back">
-              <div class="simple-person-back-content">
-                <div class="simple-person-expertise">Research Areas:  Wastewater Treatment, Photocatalyst, Adsorption, Nanotechnology and
-                  Nanomaterial Characterization, Metal Extraction using Deep Eutectic Solvents (DES) and
-                  Covalent Organic Framework (COF).</div>
-                <div class="simple-person-back-links">
-                  <a class="profile-link" href="www.linkedin.com/in/indumathi-ilango-9415b1aa" target="_blank" rel="noopener">LinkedIn</a>
-                  <a class="profile-link" href="https://scholar.google.com/citations?user=yzj4VcMAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholor</a>
+          </div>
+          <div class="simple-person-card no-flip">
+            <div class="simple-person-inner">
+              <div class="simple-person-front">
+                <div class="simple-person-top">
+                  <img class="simple-person-photo" src="src/assets//sumitkumar.jpg" alt="Sumit Jha">
+                  <div>
+                    <div class="simple-person-name">Sumit Jha</div>
+                    <div class="simple-person-role">Manger (Env)</div>
+                    <a class="profile-link" href="https://www.linkedin.com/in/sumit-kumar-jha-8b900a5b/" target="_blank"
+                      rel="noopener">LinkedIn</a>
+                  </div>
                 </div>
-                <!-- <div class="simple-person-back-text">Leads experimental planning and technical integration across research themes.</div> -->
+              </div>
+              <div class="simple-person-back">
+                <div class="simple-person-back-text">Supports industry alignment, pilot planning, and scale-up readiness
+                  with CIL teams.</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="team-subsection">
-      <div class="faculty-label">Coal India Limited Collaborators</div>
-      <div class="simple-people-grid">
-        <div class="simple-person-card no-flip">
-          <div class="simple-person-inner">
-            <div class="simple-person-front">
-              <div class="simple-person-top">
-                <img class="simple-person-photo" src="src/assets//sudip.jpg" alt="Sudip Maiti">
-                <div>
-                  <div class="simple-person-name">Sudip Maiti</div>
-                  <div class="simple-person-role">General Manager (CP &amp; PM)</div>
-                  <a class="profile-link" href="https://www.linkedin.com/in/sudip-maiti-612a0812/" target="_blank" rel="noopener">LinkedIn</a>
-                </div>
-              </div>
-            </div>
-            <div class="simple-person-back">
-              <div class="simple-person-back-text">Coordinates deployment priorities and translates operational needs into projects.</div>
-            </div>
-          </div>
-        </div>
-        <div class="simple-person-card no-flip">
-          <div class="simple-person-inner">
-            <div class="simple-person-front">
-              <div class="simple-person-top">
-                <img class="simple-person-photo" src="src/assets//sumitkumar.jpg" alt="Sumit Jha">
-                <div>
-                  <div class="simple-person-name">Sumit Jha</div>
-                  <div class="simple-person-role">Manger (Env)</div>
-                  <a class="profile-link" href="https://www.linkedin.com/in/sumit-kumar-jha-8b900a5b/" target="_blank" rel="noopener">LinkedIn</a>
-                </div>
-              </div>
-            </div>
-            <div class="simple-person-back">
-              <div class="simple-person-back-text">Supports industry alignment, pilot planning, and scale-up readiness with CIL teams.</div>
-            </div>
-          </div>
-        </div>
+  </section>
+
+  <div class="divider" style="margin:0; background:rgba(255,255,255,0.05);"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-eyebrow reveal">Get Involved</div>
+    <h2 class="reveal">Join Us in Shaping<br>India's <em>Sustainable Future</em></h2>
+    <p class="contact-body reveal">The Centre for Sustainable Energy represents a historic opportunity to transform
+      India's energy landscape — positioning Coal India Limited at the forefront of innovation while delivering on the
+      nation's climate commitments.</p>
+    <div class="contact-cta reveal">
+      <a href="mailto:satya@iitm.ac.in" class="btn-primary">Contact the Centre</a>
+      <a href="#research" class="btn-ghost">View Research Areas</a>
+    </div>
+    <div class="contact-meta reveal">
+      <div class="meta-item">
+        <div class="meta-label">Lead Contact</div>
+        <div class="meta-value">Dr. Satyanarayanan Seshadri</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Email</div>
+        <div class="meta-value">satya@iitm.ac.in</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        <div class="meta-value">IIT Madras, Chennai</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Partner</div>
+        <div class="meta-value">Coal India Limited</div>
       </div>
     </div>
-  </div>
-</section>
 
-<div class="divider" style="margin:0; background:rgba(255,255,255,0.05);"></div>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-eyebrow reveal">Get Involved</div>
-  <h2 class="reveal">Join Us in Shaping<br>India's <em>Sustainable Future</em></h2>
-  <p class="contact-body reveal">The Centre for Sustainable Energy represents a historic opportunity to transform India's energy landscape — positioning Coal India Limited at the forefront of innovation while delivering on the nation's climate commitments.</p>
-  <div class="contact-cta reveal">
-    <a href="mailto:satya@iitm.ac.in" class="btn-primary">Contact the Centre</a>
-    <a href="#research" class="btn-ghost">View Research Areas</a>
-  </div>
-  <div class="contact-meta reveal">
-    <div class="meta-item"><div class="meta-label">Lead Contact</div><div class="meta-value">Dr. Satyanarayanan Seshadri</div></div>
-    <div class="meta-item"><div class="meta-label">Email</div><div class="meta-value">satya@iitm.ac.in</div></div>
-    <div class="meta-item"><div class="meta-label">Institution</div><div class="meta-value">IIT Madras, Chennai</div></div>
-    <div class="meta-item"><div class="meta-label">Partner</div><div class="meta-value">Coal India Limited</div></div>
-  </div>
- 
-</section>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Centre for Sustainable Energy · IIT Madras × Coal India Limited</p>
+    <div class="footer-badges">
+      <a href="https://www.iitm.ac.in/" target="_blank" class="footer-badge">IIT Madras</a>
+      <span class="footer-sep">|</span>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 Centre for Sustainable Energy · IIT Madras × Coal India Limited</p>
-  <div class="footer-badges">
-  <a href="https://www.iitm.ac.in/" target="_blank" class="footer-badge">IIT Madras</a>
-  <span class="footer-sep">|</span>
+      <a href="https://energyconsortium.org/" class="footer-badge">Energy Consortium</a>
+      <span class="footer-sep">|</span>
 
-  <a href="https://energyconsortium.org/" class="footer-badge">Energy Consortium</a>
-  <span class="footer-sep">|</span>
+      <a href="https://sustainability.iitm.ac.in/" class="footer-badge">School of Sustainability</a>
+      <span class="footer-sep">|</span>
 
-  <a href="https://sustainability.iitm.ac.in/" class="footer-badge">School of Sustainability</a>
-  <span class="footer-sep">|</span>
+      <a href="https://www.coalindia.in/" target="_blank" class="footer-badge">Coal India Limited</a>
+    </div>
+  </footer>
 
-  <a href="https://www.coalindia.in/" target="_blank" class="footer-badge">Coal India Limited</a>
-</div>
-</footer>
-
-<script>
-  const bar = document.getElementById('progressBar');
-  window.addEventListener('scroll', () => {
-    bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-  });
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  document.querySelectorAll('[data-bio-toggle]').forEach(link => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const targetId = link.getAttribute('data-bio-toggle');
-      const bioCard = document.getElementById(targetId);
-      if (!bioCard) return;
-
-      const willOpen = !bioCard.classList.contains('is-open');
-
-      document.querySelectorAll('.bio-card.is-open').forEach((openCard) => {
-        openCard.classList.remove('is-open');
-      });
-      document.querySelectorAll('[data-bio-toggle]').forEach((toggleLink) => {
-        toggleLink.textContent = 'Read full bio';
-      });
-
-      if (willOpen) {
-        bioCard.classList.add('is-open');
-        link.textContent = 'Hide full bio';
-        bioCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
+  <script>
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
     });
-  });
-</script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('[data-bio-toggle]').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const targetId = link.getAttribute('data-bio-toggle');
+        const bioCard = document.getElementById(targetId);
+        if (!bioCard) return;
+
+        const willOpen = !bioCard.classList.contains('is-open');
+
+        document.querySelectorAll('.bio-card.is-open').forEach((openCard) => {
+          openCard.classList.remove('is-open');
+        });
+        document.querySelectorAll('[data-bio-toggle]').forEach((toggleLink) => {
+          toggleLink.textContent = 'Read full bio';
+        });
+
+        if (willOpen) {
+          bioCard.classList.add('is-open');
+          link.textContent = 'Hide full bio';
+          bioCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
